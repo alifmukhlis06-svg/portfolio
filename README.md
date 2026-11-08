@@ -1,6 +1,6 @@
 # Alif Mukhlis — Personal Portfolio
 
-Next.js App Router, TypeScript, Tailwind CSS, Framer Motion, and Lucide. Built locally from the supplied video reference. No deployment or GitHub push has been performed.
+Next.js App Router, TypeScript, Tailwind CSS, Framer Motion, and Lucide. Built from the supplied video reference and configured for a static GitHub Pages deployment at `/portfolio/`.
 
 ## Run
 
@@ -11,7 +11,17 @@ npm ci
 npm run dev
 ```
 
-Open http://localhost:3000. For production, run `npm run build` then `npm start`. This is a standard Next.js application compatible with Vercel; deployment requires your approval.
+Open http://localhost:3000/portfolio/ during development. For a production preview, run `npm run build`, `npm run verify:export`, then `npm start` and open http://127.0.0.1:3100/portfolio/. `PORT` overrides the preview port. The preview serves only the exported `out/` directory, with no Next.js runtime or fallback to source files.
+
+## GitHub Pages
+
+- `next.config.ts` enables `output: 'export'`, `basePath: '/portfolio'`, and `trailingSlash: true`. Next.js prefixes its own CSS, JavaScript, and `next/link` navigation. A separate `assetPrefix` is unnecessary for this subdirectory deployment.
+- Raw image and local résumé URLs use `lib/asset-path.ts` because public assets do not receive the base path automatically. Paths in content configuration remain portable, such as `/photos/alif-mukhlis-suit.png`.
+- `public/.nojekyll` is copied into `out/`. The deployment artifact is `out/`, never the repository root or README.
+- `.github/workflows/pages.yml` installs dependencies, checks TypeScript, builds and validates the export, then uploads/deploys it with GitHub's Pages actions. It runs **only through a manual workflow dispatch**; pushes do not automatically redeploy.
+- After approval to publish, select **Settings → Pages → Build and deployment → Source: GitHub Actions**, push the reviewed changes, then manually run **Build and deploy portfolio to GitHub Pages** on `main`. These repository settings and deployment have not been changed by the local fix.
+- The generated site includes the homepage, project index, all three project detail pages, Beyond Code, and a static 404 page. Local verification checks route files, public assets, CSS/JavaScript references, and visible initial HTML.
+- `npm run build` also runs `scripts/finalize-export.mjs` through the `postbuild` lifecycle. It adds correctly flattened filenames for any nested RSC segment files affected by the [Next.js Windows export issue](https://github.com/vercel/next.js/issues/85374). It leaves Next.js dependencies untouched and is a no-op when the export already has the correct names. `verify:export` validates these files as well as HTML links.
 
 This workspace also contains an ignored portable runtime. If Node is not on your Windows PATH, use:
 
