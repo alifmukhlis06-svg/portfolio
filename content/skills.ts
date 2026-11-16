@@ -3,7 +3,7 @@ type SkillGroup = {
   title: string;
   icon: 'code' | 'database' | 'network' | 'shield' | 'cloud' | 'cpu' | 'tools';
   description: string;
-  items: { name: string; kind?: string }[];
+  items: { name: string; kind?: string; icon?: string }[];
   evidence: { label: string; href: string }[];
 };
 
@@ -59,6 +59,7 @@ export const skills: SkillGroup[] = [
       { name: 'IPsec VPN' },
       { name: 'SD-WAN' },
       { name: 'Wi-Fi 6 planning' },
+      { name: 'Cisco Packet Tracer', kind: 'Network simulation, topology design, and network configuration', icon: '/icons/cisco.svg' },
       { name: 'Hardware troubleshooting' },
     ],
     evidence: [
@@ -129,5 +130,15 @@ export const skills: SkillGroup[] = [
       { name: 'Adobe Creative tools', kind: 'Design & media' },
     ],
     evidence: [{ label: 'GitHub repositories', href: 'https://github.com/alifmukhlis06-svg' }],
+  },
+  {
+    number: '08',
+    title: 'Virtualization & System Administration',
+    icon: 'cpu',
+    description: 'Familiarity with virtual machines, virtualization, and operating system environments.',
+    items: [
+      { name: 'VMware', kind: 'Virtualization platform', icon: '/icons/vmware.svg' },
+    ],
+    evidence: [],
   },
 ];

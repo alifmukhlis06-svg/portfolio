@@ -87,7 +87,7 @@ export function Skills() {
       return <Reveal className="skill-card" key={group.number}>
         <div className="skill-card-top"><span>{group.number}</span><Icon className="muted" size={30} strokeWidth={1.3} aria-hidden="true" /></div>
         <h3>{group.title}</h3><p>{group.description}</p>
-        <ul className="skill-technologies">{group.items.map(item => <li key={item.name}><span>{item.name}</span>{item.kind && <small>{item.kind}</small>}</li>)}</ul>
+        <ul className="skill-technologies">{group.items.map(item => <li key={item.name}><span className="skill-name">{item.icon && <img src={assetPath(item.icon)} alt="" aria-hidden="true" />}<span>{item.name}</span></span>{item.kind && <small>{item.kind}</small>}</li>)}</ul>
         {group.evidence.length > 0 && <div className="skill-evidence"><h4 className="eyebrow">Related work</h4><ul>{group.evidence.map(e => <li key={e.label}><Link href={e.href} target={e.href.startsWith('https:') ? '_blank' : undefined} rel={e.href.startsWith('https:') ? 'noopener noreferrer' : undefined}>{e.label}<ArrowUpRight size={14} aria-hidden="true" /></Link></li>)}</ul></div>}
       </Reveal>;
     })}
