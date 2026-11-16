@@ -1,8 +1,53 @@
 import Link from 'next/link';
-import { ArrowUpRight, ArrowLeft } from 'lucide-react';
+import { ArrowLeft, ArrowUpRight } from 'lucide-react';
+import { Reveal } from '@/components/portfolio';
 import { projects } from '@/content/projects';
 import { assetPath } from '@/lib/asset-path';
-import { diplomaProjects } from '@/content/diploma-projects';
-import { Reveal } from '@/components/portfolio';
+
 export const metadata = { title: 'Technical Projects' };
-export default function Projects() { return <main id="main" className="inner-page section"><Link className="text-link" href="/#work"><ArrowLeft size={15} /> Back to portfolio</Link><span className="eyebrow page-eyebrow">IDEAS TURNED INTO INTERFACES</span><h1>Technical Projects<span className="tiny-dot">.</span></h1><p className="page-intro">A closer look at the web and Android applications I’ve been building.</p><div className="project-list">{projects.map((p, i) => <Reveal key={p.slug}><Link href={`/projects/${p.slug}`} className="project-list-card"><div className="project-list-image"><img src={assetPath(p.image)} alt={p.imageLabel} width={1440} height={900} loading={i ? 'lazy' : 'eager'} /><span>0{i + 1}</span></div><div className="project-list-info"><div><span className="eyebrow">{p.category}</span><h2>{p.name}</h2><p>{p.summary}</p><div className="tags">{p.stack.map(t => <span key={t}>{t}</span>)}</div></div><span className="round-button"><ArrowUpRight size={20} /></span></div></Link></Reveal>)}</div><section id="diploma-projects" className="diploma-projects" aria-labelledby="diploma-projects-title"><Reveal><span className="eyebrow">EARLIER ACADEMIC WORK</span><h2 id="diploma-projects-title">Diploma Projects<span className="tiny-dot">.</span></h2><p className="section-intro">Selected work from my Diploma in Computer Science at UiTM Perak, Tapah Campus.</p></Reveal><div className="diploma-project-grid">{diplomaProjects.map(project => <Reveal className="diploma-project-card" key={project.name}><span className="eyebrow">{project.category}</span><h3>{project.name}</h3><p>{project.description}</p><div className="tags">{project.stack.map(item => <span key={item}>{item}</span>)}</div><ul>{project.features.map(feature => <li key={feature}>{feature}</li>)}</ul></Reveal>)}</div></section></main>; }
+
+export default function Projects() {
+  return (
+    <main id="main" className="inner-page section">
+      <Link className="text-link" href="/#work"><ArrowLeft size={15} /> Back to portfolio</Link>
+      <span className="eyebrow page-eyebrow">SYSTEMS, SOFTWARE &amp; INTERFACES</span>
+      <h1>Technical Projects<span className="tiny-dot">.</span></h1>
+      <p className="page-intro">Software, networking, IoT, cybersecurity, and database work in one place.</p>
+
+      <div className="project-list">
+        {projects.map((project, index) => (
+          <Reveal key={project.slug}>
+            <Link href={`/projects/${project.slug}`} className="project-list-card">
+              <div className="project-list-image">
+                {project.image && project.imageLabel ? (
+                  <img
+                    src={assetPath(project.image)}
+                    alt={project.imageLabel}
+                    width={1440}
+                    height={900}
+                    loading={index ? 'lazy' : 'eager'}
+                  />
+                ) : (
+                  <div className="project-list-placeholder" aria-hidden="true">
+                    <span>{project.category}</span>
+                    <strong>{project.name}</strong>
+                  </div>
+                )}
+                <span>{String(index + 1).padStart(2, '0')}</span>
+              </div>
+              <div className="project-list-info">
+                <div>
+                  <span className="eyebrow">{project.category}</span>
+                  <h2>{project.name}</h2>
+                  <p>{project.summary}</p>
+                  <div className="tags">{project.stack.map(item => <span key={item}>{item}</span>)}</div>
+                </div>
+                <span className="round-button"><ArrowUpRight size={20} /></span>
+              </div>
+            </Link>
+          </Reveal>
+        ))}
+      </div>
+    </main>
+  );
+}

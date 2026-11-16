@@ -1,37 +1,133 @@
-﻿// Public repository evidence is recorded in README.md; other skills are user-confirmed.
 type SkillGroup = {
-  number: string; title: string;
-  icon: 'code' | 'database' | 'cloud' | 'git' | 'network' | 'tools' | 'design';
+  number: string;
+  title: string;
+  icon: 'code' | 'database' | 'network' | 'shield' | 'cloud' | 'cpu' | 'tools';
   description: string;
   items: { name: string; kind?: string }[];
   evidence: { label: string; href: string }[];
 };
+
 export const skills: SkillGroup[] = [
-  { number: '01', title: 'Programming & Web', icon: 'code',
-    description: 'Web interfaces, PHP-backed applications, and native Android projects, alongside Java and C++ used in academic work.',
-    items: [{ name: 'HTML', kind: 'Markup' }, { name: 'CSS', kind: 'Stylesheets' }, { name: 'JavaScript', kind: 'Language' }, { name: 'PHP', kind: 'Language' }, { name: 'Java', kind: 'Language' }, { name: 'C++', kind: 'Language' }, { name: 'Kotlin', kind: 'Language' }],
-    evidence: [{ label: 'InternPilih', href: '/projects/internpilih' }, { label: 'GetInTheCar', href: '/projects/getinthecar' }, { label: 'Zakat', href: '/projects/zakat' }, { label: 'Diploma projects', href: '/projects#diploma-projects' }] },
-  { number: '02', title: 'Databases & Backend', icon: 'database',
-    description: 'Relational databases and backend services across internship-management and diploma database projects.',
-    items: [{ name: 'PostgreSQL', kind: 'Relational database' }, { name: 'MySQL', kind: 'Relational database' }, { name: 'Supabase', kind: 'Backend platform' }, { name: 'Microsoft Access', kind: 'Desktop database' }],
-    evidence: [{ label: 'InternPilih: PostgreSQL and Supabase integration', href: 'https://github.com/alifmukhlis06-svg/InternPilih/tree/main/database/supabase' }, { label: 'Online Library System: Access and MySQL', href: '/projects#diploma-projects' }] },
-  { number: '03', title: 'Cloud & Deployment', icon: 'cloud',
-    description: 'Deploying web projects with Vercel, including InternPilih deployment and routing configuration.',
-    items: [{ name: 'Vercel', kind: 'Deployment platform' }],
-    evidence: [{ label: 'InternPilih deployment configuration', href: 'https://github.com/alifmukhlis06-svg/InternPilih/blob/main/vercel.json' }] },
-  { number: '04', title: 'Version Control', icon: 'git',
-    description: 'Using Git for source version control and GitHub to host and share project repositories.',
-    items: [{ name: 'Git', kind: 'Version control system' }, { name: 'GitHub', kind: 'Repository hosting' }],
-    evidence: [{ label: 'My GitHub repositories', href: 'https://github.com/alifmukhlis06-svg' }] },
-  { number: '05', title: 'Networking & IT Support', icon: 'network',
-    description: 'Practical support in a hospital environment, complemented by network configuration work in academic study.',
-    items: [{ name: 'Network configuration' }, { name: 'Troubleshooting' }, { name: 'Hardware support' }, { name: 'Windows installation' }, { name: 'Printer configuration' }, { name: 'IT helpdesk support' }],
-    evidence: [{ label: 'Hospital Raja Permaisuri Bainun internship', href: '#work-experience' }] },
-  { number: '06', title: 'Development Tools', icon: 'tools',
-    description: 'Editors, IDEs, and mobile development tools used across my academic and software project work.',
-    items: [{ name: 'VS Code', kind: 'Code editor' }, { name: 'Visual Studio', kind: 'IDE' }, { name: 'Android Studio', kind: 'IDE' }, { name: 'Flutter', kind: 'UI framework' }, { name: 'Dart', kind: 'Language' }, { name: 'Android', kind: 'Mobile platform' }, { name: 'Gradle', kind: 'Build tool' }, { name: 'Material Components', kind: 'UI library' }],
-    evidence: [{ label: 'Zakat: native Android project', href: '/projects/zakat' }, { label: 'Diploma library interface: Visual Studio', href: '/projects#diploma-projects' }] },
-  { number: '07', title: 'Design & Productivity', icon: 'design',
-    description: 'Design, media editing, documentation, and diagramming tools used during my studies and project work.',
-    items: [{ name: 'Adobe Illustrator' }, { name: 'Adobe Photoshop' }, { name: 'Adobe Premiere Pro' }, { name: 'Microsoft Office' }, { name: 'Microsoft Visio' }], evidence: [] },
+  {
+    number: '01',
+    title: 'Programming & Web Development',
+    icon: 'code',
+    description: 'Web applications, browser interfaces, native Android work, and programming foundations developed across verified projects and coursework.',
+    items: [
+      { name: 'HTML', kind: 'Markup' },
+      { name: 'CSS', kind: 'Stylesheets' },
+      { name: 'JavaScript', kind: 'Language' },
+      { name: 'PHP', kind: 'Language' },
+      { name: 'Java', kind: 'Language' },
+      { name: 'C++', kind: 'Language' },
+      { name: 'Kotlin', kind: 'Language' },
+      { name: 'Flutter & Dart', kind: 'Coursework' },
+    ],
+    evidence: [
+      { label: 'InternPilih', href: '/projects/internpilih' },
+      { label: 'GetInTheCar', href: '/projects/getinthecar' },
+      { label: 'Zakat calculator', href: '/projects/zakat' },
+      { label: 'Coffee Shop Website', href: '/projects/coffee-shop-website' },
+    ],
+  },
+  {
+    number: '02',
+    title: 'Databases & Backend Technologies',
+    icon: 'database',
+    description: 'Relational databases and backend platforms used across web and database projects.',
+    items: [
+      { name: 'PostgreSQL', kind: 'Relational database' },
+      { name: 'MySQL', kind: 'Relational database' },
+      { name: 'Supabase', kind: 'Backend platform' },
+      { name: 'Microsoft Access', kind: 'Desktop database' },
+    ],
+    evidence: [
+      { label: 'InternPilih backend', href: '/projects/internpilih' },
+      { label: 'Online Library System', href: '/projects/online-library-system' },
+    ],
+  },
+  {
+    number: '03',
+    title: 'Networking & IT Infrastructure',
+    icon: 'network',
+    description: 'Network design concepts and practical support experience, presented according to their project, coursework, or workplace context.',
+    items: [
+      { name: 'VLANs' },
+      { name: 'Access Control Lists' },
+      { name: 'Cisco switching & routing' },
+      { name: 'FortiGate architecture' },
+      { name: 'IPsec VPN' },
+      { name: 'SD-WAN' },
+      { name: 'Wi-Fi 6 planning' },
+      { name: 'Hardware troubleshooting' },
+    ],
+    evidence: [
+      { label: 'GITC Enterprise Network Design', href: '/projects/gitc-enterprise-network-design' },
+      { label: 'Hospital IT Support internship', href: '/#work-experience' },
+    ],
+  },
+  {
+    number: '04',
+    title: 'Cybersecurity & Digital Forensics',
+    icon: 'shield',
+    description: 'Web security assessment practice and degree coursework in information security, network security, and digital forensics.',
+    items: [
+      { name: 'OWASP ZAP', kind: 'Security testing' },
+      { name: 'Manual web testing' },
+      { name: 'SQL injection assessment' },
+      { name: 'XSS assessment' },
+      { name: 'Access-control testing' },
+      { name: 'Digital forensics', kind: 'Coursework' },
+    ],
+    evidence: [
+      { label: 'Web Application Penetration Testing', href: '/projects/web-application-penetration-testing' },
+      { label: 'GITC security design', href: '/projects/gitc-enterprise-network-design' },
+    ],
+  },
+  {
+    number: '05',
+    title: 'Cloud & Deployment',
+    icon: 'cloud',
+    description: 'Cloud-backed application services and static web deployment used in verified projects.',
+    items: [
+      { name: 'Vercel', kind: 'Deployment platform' },
+      { name: 'GitHub Pages', kind: 'Static hosting' },
+    ],
+    evidence: [
+      { label: 'InternPilih live deployment', href: 'https://internpilih.vercel.app/' },
+      { label: 'This portfolio', href: 'https://alifmukhlis06-svg.github.io/portfolio/' },
+    ],
+  },
+  {
+    number: '06',
+    title: 'IoT & Embedded Systems',
+    icon: 'cpu',
+    description: 'Connected hardware, sensor integration, and cloud data monitoring documented in the Smart Bathtub prototype.',
+    items: [
+      { name: 'ESP32', kind: 'Microcontroller' },
+      { name: 'Firebase Firestore', kind: 'Cloud database' },
+      { name: 'Ultrasonic sensor' },
+      { name: 'Temperature sensor' },
+      { name: 'Relay & pump control' },
+      { name: 'LCD, LED & buzzer' },
+    ],
+    evidence: [{ label: 'Smart Bathtub Safety & Monitoring System', href: '/projects/smart-bathtub-safety-monitoring' }],
+  },
+  {
+    number: '07',
+    title: 'Development Tools',
+    icon: 'tools',
+    description: 'Version control, editors, IDEs, diagramming, productivity, and media tools used across project work.',
+    items: [
+      { name: 'Git', kind: 'Version control' },
+      { name: 'GitHub', kind: 'Repository hosting' },
+      { name: 'VS Code', kind: 'Code editor' },
+      { name: 'Visual Studio', kind: 'IDE' },
+      { name: 'Android Studio', kind: 'IDE' },
+      { name: 'Arduino IDE', kind: 'Embedded development' },
+      { name: 'Microsoft Visio', kind: 'Diagramming' },
+      { name: 'Adobe Creative tools', kind: 'Design & media' },
+    ],
+    evidence: [{ label: 'GitHub repositories', href: 'https://github.com/alifmukhlis06-svg' }],
+  },
 ];

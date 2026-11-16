@@ -1,11 +1,11 @@
 'use client';
 import Link from 'next/link';
 import { AnimatePresence, animate, motion, useInView, useReducedMotion } from 'framer-motion';
-import { ArrowDown, ArrowLeft, ArrowRight, ArrowUpRight, Code2, Network, Database, Cloud, GitBranch, Wrench, Palette, Github, GraduationCap, BriefcaseBusiness, ImagePlus, Linkedin, Mail, FileText, Plus } from 'lucide-react';
+import { ArrowDown, ArrowLeft, ArrowRight, ArrowUpRight, Code2, Network, Database, Cloud, Wrench, ShieldCheck, Cpu, Languages, Github, GraduationCap, BriefcaseBusiness, ImagePlus, Linkedin, Mail, FileText, Plus } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { assetPath } from '@/lib/asset-path';
 import { personal } from '@/content/personal';
-import { projects } from '@/content/projects';
+import { featuredProjects } from '@/content/projects';
 import { skills } from '@/content/skills';
 import { achievements } from '@/content/achievements';
 import { experience, type TimelineEntry } from '@/content/experience';
@@ -25,19 +25,62 @@ export function Reveal({ children, className = '' }: { children: React.ReactNode
   return <div ref={ref} className={className}>{children}</div>;
 }
 export function Portrait({ small = false }: { small?: boolean }) { return personal.portrait ? <img className={small ? 'portrait-small' : 'portrait-photo'} src={assetPath(personal.portrait)} alt="Alif Mukhlis" /> : <div className={small ? 'portrait-small portrait-monogram' : 'portrait-placeholder'} role="img" aria-label="Portrait placeholder for Alif Mukhlis">{small ? 'AM' : <><svg viewBox="0 0 420 500" aria-hidden="true"><defs><linearGradient id="figure" x1="0" x2="1" y2="1"><stop stopColor="#a6a8aa" /><stop offset="1" stopColor="#333638" /></linearGradient><linearGradient id="jacket" x1="0" x2="0.8" y2="1"><stop stopColor="#34383a" /><stop offset="1" stopColor="#111516" /></linearGradient></defs><path d="M155 181 Q130 126 154 78 Q177 36 222 49 Q277 48 280 111 L266 181 245 211 178 211Z" fill="url(#figure)" /><path d="M178 183 L174 230 210 268 250 229 245 180" fill="#777b7d" /><path d="M172 218 L210 254 249 218 292 238 339 272 Q371 336 387 500H31Q47 326 83 271L128 240Z" fill="url(#jacket)" /><path d="M174 220 L210 252 249 220 234 351 209 417 185 352Z" fill="#bfc1c1" /><path d="M202 255L218 255 225 279 216 357 208 381 197 354 197 279Z" fill="#232729" /><path d="M160 223L122 265 165 284 147 309 208 426 177 282Z M259 224L295 266 254 284 270 310 212 425 243 282Z" fill="#424749" /></svg><span className="portrait-caption"><ImagePlus size={12} /> YOUR PORTRAIT HERE</span></>}</div>; }
-export function Hero() { return <section className="hero" aria-labelledby="hero-title"><div className="hero-topline"><span><i className="status-dot" /> PERSONAL PORTFOLIO</span><span>DEVELOPMENT · NETWORKS · IDEAS</span></div><motion.h1 id="hero-title" className="hero-name" initial={false} animate={{ opacity: [0.7, 1], y: [20, 0] }} transition={{ duration: 0.8 }}>ALIF MUKHLIS</motion.h1><motion.div className="hero-portrait" initial={false} animate={{ opacity: [0.7, 1], y: [20, 0] }} transition={{ duration: 0.8, delay: 0.1 }}><Portrait /></motion.div><div className="hero-side hero-side-left"><span className="eyebrow">HELLO, I’M ALIF</span><p>Netcentric Computing<br />student at UiTM Perlis.</p></div><div className="hero-side hero-side-right"><span className="eyebrow">{personal.distinction}</span><p>Former IT Support Intern.<br />Web &amp; Android projects.</p></div><div className="hero-bottom"><span>NETCENTRIC COMPUTING<br /><b>UiTM Perlis</b></span><a href="#work" className="scroll-link">SCROLL TO EXPLORE <span><ArrowDown size={17} /></span></a><span className="hero-index">PORTFOLIO / 01</span></div></section>; }
+export function Hero() { return <section className="hero" aria-labelledby="hero-title"><div className="hero-topline"><span><i className="status-dot" /> PERSONAL PORTFOLIO</span><span>DEVELOPMENT · NETWORKS · IDEAS</span></div><motion.h1 id="hero-title" className="hero-name" initial={false} animate={{ opacity: [0.7, 1], y: [20, 0] }} transition={{ duration: 0.8 }}>ALIF MUKHLIS</motion.h1><motion.div className="hero-portrait" initial={false} animate={{ opacity: [0.7, 1], y: [20, 0] }} transition={{ duration: 0.8, delay: 0.1 }}><Portrait /></motion.div><div className="hero-side hero-side-left"><span className="eyebrow">HELLO, I’M ALIF</span><p>Netcentric Computing<br />student at UiTM Perlis.</p></div><div className="hero-side hero-side-right"><span className="eyebrow">{personal.distinction}</span><p>Projects across web,<br />networks, IoT &amp; security.</p></div><div className="hero-bottom"><span>NETCENTRIC COMPUTING<br /><b>UiTM Perlis</b></span><a href="#work" className="scroll-link">SCROLL TO EXPLORE <span><ArrowDown size={17} /></span></a><span className="hero-index">PORTFOLIO / 01</span></div></section>; }
 export function Gallery() {
-  const [active, setActive] = useState(0); const reduce = useReducedMotion(); const p = projects[active];
-  const change = (direction: number) => setActive((active + direction + projects.length) % projects.length);
-  return <section id="work" className="section work-section"><Reveal><div className="section-heading"><div><span className="eyebrow">01 / SELECTED PROJECTS</span><h2>Work Gallery<span className="tiny-dot">.</span></h2></div><Link className="pill-link" href="/projects">All technical projects <ArrowUpRight size={14} /></Link></div><p className="section-intro">A few things I’ve built. Each one, a new perspective.</p></Reveal><div className="carousel" role="region" aria-roledescription="carousel" aria-label="Selected projects" tabIndex={0} onKeyDown={e => { if (e.key === 'ArrowRight') { e.preventDefault(); change(1); } if (e.key === 'ArrowLeft') { e.preventDefault(); change(-1); } }}><div className="gallery-stage"><button className="side-project previous-project" onClick={() => change(-1)} aria-label={`Previous project: ${projects[(active + 2) % 3].name}`} tabIndex={-1}><img src={assetPath(projects[(active + 2) % 3].image)} alt="" /><span>{projects[(active + 2) % 3].name}</span></button><AnimatePresence mode="wait"><motion.div className="project-preview" key={p.slug} initial={false} animate={{ opacity: 1, x: 0, scale: 1 }} exit={{ opacity: 0, x: reduce ? 0 : -35 }} transition={{ duration: 0.35 }} drag={reduce ? false : 'x'} dragConstraints={{ left: 0, right: 0 }} onDragEnd={(_, info) => { if (Math.abs(info.offset.x) > 55) change(info.offset.x < 0 ? 1 : -1); }}><div className="browser-bar"><span><i /><i /><i /></span><span>{p.website ? 'internpilih.vercel.app' : p.slug === 'zakat' ? 'ANDROID / INTERFACE STUDY' : 'GETINTHECAR / BOOKING INTERFACE'}</span><ArrowUpRight size={11} /></div><Link href={`/projects/${p.slug}`} aria-label={`Explore ${p.name}`}><img src={assetPath(p.image)} alt={p.imageLabel} width={1440} height={900} draggable={false} /></Link><span className="preview-badge">{p.slug === 'zakat' ? 'ILLUSTRATIVE RECONSTRUCTION' : p.slug === 'internpilih' ? 'FEATURED PROJECT' : 'SOURCE-RENDERED INTERFACE'}</span></motion.div></AnimatePresence><button className="side-project next-project" onClick={() => change(1)} aria-label={`Next project: ${projects[(active + 1) % 3].name}`} tabIndex={-1}><img src={assetPath(projects[(active + 1) % 3].image)} alt="" /><span>{projects[(active + 1) % 3].name}</span></button></div><div className="gallery-controls"><button className="round-button" aria-label="Previous project" onClick={() => change(-1)}><ArrowLeft size={17} /></button><div className="gallery-dots">{projects.map((project, i) => <button key={project.slug} onClick={() => setActive(i)} aria-label={`Show ${project.name}`} aria-current={i === active ? 'true' : undefined}><span /></button>)}</div><button className="round-button" aria-label="Next project" onClick={() => change(1)}><ArrowRight size={17} /></button></div><div className="project-caption" aria-live="polite" aria-atomic="true"><span className="eyebrow">{p.category}</span><h3>{p.name}</h3><p>{p.summary}</p><div className="tags">{p.stack.slice(0, 4).map(t => <span key={t}>{t}</span>)}</div><Link href={`/projects/${p.slug}`} className="text-link">Explore project <ArrowUpRight size={15} /></Link></div></div></section>;
+  const [active, setActive] = useState(0);
+  const reduce = useReducedMotion();
+  const project = featuredProjects[active];
+  const previous = featuredProjects[(active - 1 + featuredProjects.length) % featuredProjects.length];
+  const next = featuredProjects[(active + 1) % featuredProjects.length];
+  const change = (direction: number) => setActive((active + direction + featuredProjects.length) % featuredProjects.length);
+
+  return <section id="work" className="section work-section">
+    <Reveal>
+      <div className="section-heading">
+        <div><span className="eyebrow">01 / SELECTED PROJECTS</span><h2>Work Gallery<span className="tiny-dot">.</span></h2></div>
+        <Link className="pill-link" href="/projects">All technical projects <ArrowUpRight size={14} /></Link>
+      </div>
+      <p className="section-intro">A few things I’ve built. Each one, a new perspective.</p>
+    </Reveal>
+    <div className="carousel" role="region" aria-roledescription="carousel" aria-label="Selected projects" tabIndex={0} onKeyDown={event => {
+      if (event.key === 'ArrowRight') { event.preventDefault(); change(1); }
+      if (event.key === 'ArrowLeft') { event.preventDefault(); change(-1); }
+    }}>
+      <div className="gallery-stage">
+        <button className="side-project previous-project" onClick={() => change(-1)} aria-label={`Previous project: ${previous.name}`} tabIndex={-1}>
+          <img src={assetPath(previous.image)} alt="" /><span>{previous.name}</span>
+        </button>
+        <AnimatePresence mode="wait">
+          <motion.div className="project-preview" key={project.slug} initial={false} animate={{ opacity: 1, x: 0, scale: 1 }} exit={{ opacity: 0, x: reduce ? 0 : -35 }} transition={{ duration: 0.35 }} drag={reduce ? false : 'x'} dragConstraints={{ left: 0, right: 0 }} onDragEnd={(_, info) => { if (Math.abs(info.offset.x) > 55) change(info.offset.x < 0 ? 1 : -1); }}>
+            <div className="browser-bar"><span><i /><i /><i /></span><span>{project.website ? 'internpilih.vercel.app' : project.slug === 'zakat' ? 'ANDROID / INTERFACE STUDY' : 'GETINTHECAR / BOOKING INTERFACE'}</span><ArrowUpRight size={11} /></div>
+            <Link href={`/projects/${project.slug}`} aria-label={`Explore ${project.name}`}><img src={assetPath(project.image)} alt={project.imageLabel} width={1440} height={900} draggable={false} /></Link>
+            <span className="preview-badge">{project.slug === 'zakat' ? 'ILLUSTRATIVE RECONSTRUCTION' : project.slug === 'internpilih' ? 'FEATURED PROJECT' : 'SOURCE-RENDERED INTERFACE'}</span>
+          </motion.div>
+        </AnimatePresence>
+        <button className="side-project next-project" onClick={() => change(1)} aria-label={`Next project: ${next.name}`} tabIndex={-1}>
+          <img src={assetPath(next.image)} alt="" /><span>{next.name}</span>
+        </button>
+      </div>
+      <div className="gallery-controls">
+        <button className="round-button" aria-label="Previous project" onClick={() => change(-1)}><ArrowLeft size={17} /></button>
+        <div className="gallery-dots">{featuredProjects.map((item, index) => <button key={item.slug} onClick={() => setActive(index)} aria-label={`Show ${item.name}`} aria-current={index === active ? 'true' : undefined}><span /></button>)}</div>
+        <button className="round-button" aria-label="Next project" onClick={() => change(1)}><ArrowRight size={17} /></button>
+      </div>
+      <div className="project-caption" aria-live="polite" aria-atomic="true">
+        <span className="eyebrow">{project.category}</span><h3>{project.name}</h3><p>{project.summary}</p>
+        <div className="tags">{project.stack.slice(0, 4).map(item => <span key={item}>{item}</span>)}</div>
+        <Link href={`/projects/${project.slug}`} className="text-link">Explore project <ArrowUpRight size={15} /></Link>
+      </div>
+    </div>
+  </section>;
 }
 export function Skills() {
-  const icons = { code: Code2, database: Database, cloud: Cloud, git: GitBranch, network: Network, tools: Wrench, design: Palette };
+  const icons = { code: Code2, database: Database, network: Network, shield: ShieldCheck, cloud: Cloud, cpu: Cpu, tools: Wrench };
   return <section id="skills" className="section skills-section">
     <Reveal className="skills-intro">
       <span className="eyebrow">02 / TOOLKIT & CAPABILITIES</span>
       <h2>What I Can Do<span className="tiny-dot">.</span></h2>
-      <p>Technologies I use across my diploma, degree, software projects, and IT support experience.</p>
+      <p>Technologies I use across verified projects, degree coursework, and practical experience.</p>
     </Reveal>
     {skills.map(group => {
       const Icon = icons[group.icon];
@@ -49,7 +92,7 @@ export function Skills() {
       </Reveal>;
     })}
     <Reveal className="coursework">
-      <span className="eyebrow">CDCS251 / UiTM PERLIS</span>
+      <span className="eyebrow">UiTM PERLIS · NETCENTRIC COMPUTING</span>
       <h3>Relevant coursework</h3>
       <p>Explore my programme curriculum. These subjects describe academic study, rather than certifications or professional mastery.</p>
       <div className="coursework-groups">{curriculum.map(group => <details key={group.title}>
@@ -59,7 +102,7 @@ export function Skills() {
     </Reveal>
   </section>;
 }
-export function About() { return <section id="about" className="section about-section"><Reveal><span className="eyebrow">03 / A LITTLE ABOUT ME</span><h2>Curious by nature.<br />A builder by choice.</h2></Reveal><Reveal className="about-body"><div className="about-profile"><Portrait small /><div><h3>{personal.name}</h3><span className="eyebrow">{personal.headline}</span></div></div><p className="about-lead">{personal.introduction}</p><p>{personal.background}</p><div className="about-facts"><div><GraduationCap size={20} /><span>{personal.education}<small>{personal.university}</small></span></div><div><BriefcaseBusiness size={20} /><span>{personal.internship}<small>{personal.organization}, {personal.location}<br />{personal.internshipPeriod}</small></span></div></div><Link href="/beyond-code" className="text-link">The person beyond the code <ArrowUpRight size={15} /></Link></Reveal></section>; }
+export function About() { return <section id="about" className="section about-section"><Reveal><span className="eyebrow">03 / A LITTLE ABOUT ME</span><h2>Curious by nature.<br />A builder by choice.</h2></Reveal><Reveal className="about-body"><div className="about-profile"><Portrait small /><div><h3>{personal.name}</h3><span className="eyebrow">{personal.headline}</span></div></div><p className="about-lead">{personal.introduction}</p><p>{personal.background}</p><div className="about-facts"><div><GraduationCap size={20} /><span>{personal.education}<small>{personal.university}</small></span></div><div><BriefcaseBusiness size={20} /><span>{personal.internship}<small>{personal.organization}, {personal.location}<br />{personal.internshipPeriod}</small></span></div><div><Languages size={20} /><span>Languages<small>{personal.languages.join(' · ')}</small></span></div></div><Link href="/beyond-code" className="text-link">The person beyond the code <ArrowUpRight size={15} /></Link></Reveal></section>; }
 export function Awards() { return <section id="awards" className="section awards-section"><Reveal><span className="eyebrow">04 / MILESTONES & MEMORIES</span><h2>Awards & Achievements<span className="tiny-dot">.</span></h2><p className="section-intro">Academic recognition and milestones along the way.</p></Reveal><div className="awards-layout"><Reveal className="photo-collage">{[0, 1, 2, 3, 4].map((n) => <div key={n} className={`photo-slot photo-slot-${n + 1}`}>{achievements[n % achievements.length].image ? <img src={assetPath(achievements[n % achievements.length].image!)} alt={achievements[n % achievements.length].title} loading="lazy" /> : <><ImagePlus size={n % 2 ? 20 : 28} strokeWidth={1} /><span>{['CAMPUS MOMENTS', 'ACADEMIC MILESTONES', 'THE JOURNEY', 'GOOD COMPANY', 'SMALL WINS'][n]}</span><small>Photo to come</small></>}</div>)}</Reveal><Reveal className="award-list">{achievements.map((a, i) => <div className="award-item" key={a.title}><span className="award-number">0{i + 1}</span><div><span className="eyebrow">{a.category}</span><h3>{a.title}</h3><p>{a.detail}</p>{!a.confirmed && <small className="pending-tag">{i === 0 ? 'Details awaiting confirmation' : 'Collection in progress'}</small>}</div></div>)}</Reveal></div></section>; }
 function Timeline({ entries }: { entries: TimelineEntry[] }) {
   return <div className="timeline">{entries.map((entry, i) => <Reveal className="timeline-item" key={entry.title}>
