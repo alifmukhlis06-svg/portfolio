@@ -52,9 +52,9 @@ export function Gallery() {
         </button>
         <AnimatePresence mode="wait">
           <motion.div className="project-preview" key={project.slug} initial={false} animate={{ opacity: 1, x: 0, scale: 1 }} exit={{ opacity: 0, x: reduce ? 0 : -35 }} transition={{ duration: 0.35 }} drag={reduce ? false : 'x'} dragConstraints={{ left: 0, right: 0 }} onDragEnd={(_, info) => { if (Math.abs(info.offset.x) > 55) change(info.offset.x < 0 ? 1 : -1); }}>
-            <div className="browser-bar"><span><i /><i /><i /></span><span>{project.website ? 'internpilih.vercel.app' : project.slug === 'zakat' ? 'ANDROID / INTERFACE STUDY' : 'GETINTHECAR / BOOKING INTERFACE'}</span><ArrowUpRight size={11} /></div>
+            <div className="browser-bar"><span><i /><i /><i /></span><span>{project.previewLabel}</span><ArrowUpRight size={11} /></div>
             <Link href={`/projects/${project.slug}`} aria-label={`Explore ${project.name}`}><img src={assetPath(project.image)} alt={project.imageLabel} width={1440} height={900} draggable={false} /></Link>
-            <span className="preview-badge">{project.slug === 'zakat' ? 'ILLUSTRATIVE RECONSTRUCTION' : project.slug === 'internpilih' ? 'FEATURED PROJECT' : 'SOURCE-RENDERED INTERFACE'}</span>
+            <span className="preview-badge">{project.previewBadge}</span>
           </motion.div>
         </AnimatePresence>
         <button className="side-project next-project" onClick={() => change(1)} aria-label={`Next project: ${next.name}`} tabIndex={-1}>

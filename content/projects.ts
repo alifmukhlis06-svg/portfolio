@@ -24,6 +24,8 @@ export type Project = {
   github?: string;
   image?: string;
   imageLabel?: string;
+  previewLabel?: string;
+  previewBadge?: string;
   note: string;
   sources: { label: string; url: string }[];
   featured?: boolean;
@@ -48,6 +50,8 @@ export const projects: Project[] = [
     github: 'https://github.com/alifmukhlis06-svg/InternPilih',
     image: '/projects/internpilih.webp',
     imageLabel: 'InternPilih public landing page',
+    previewLabel: 'internpilih.vercel.app',
+    previewBadge: 'FEATURED PROJECT',
     note: 'Landing-page capture from the public deployment. Feature descriptions are based on the public repository; production backend behavior has not been independently tested.',
     sources: [{ label: 'Public source tree', url: 'https://github.com/alifmukhlis06-svg/InternPilih' }, { label: 'Live website', url: 'https://internpilih.vercel.app/' }],
     featured: true,
@@ -63,6 +67,8 @@ export const projects: Project[] = [
     github: 'https://github.com/alifmukhlis06-svg/GetInTheCar',
     image: '/projects/getinthecar.webp',
     imageLabel: 'GetInTheCar booking interface rendered from public source',
+    previewLabel: 'GETINTHECAR / BOOKING INTERFACE',
+    previewBadge: 'SOURCE-RENDERED INTERFACE',
     note: 'Source-rendered interface. Driver matching and ride records in the inspected flow are simulated; this is not presented as a live transport service.',
     sources: [{ label: 'Booking interface source', url: 'https://github.com/alifmukhlis06-svg/GetInTheCar/blob/main/user.html' }],
     featured: true,
@@ -78,6 +84,8 @@ export const projects: Project[] = [
     github: 'https://github.com/alifmukhlis06-svg/zakat',
     image: '/projects/zakat.svg',
     imageLabel: 'Illustrative reconstruction based on the Android XML layout; not an app screenshot',
+    previewLabel: 'ANDROID / INTERFACE STUDY',
+    previewBadge: 'ILLUSTRATIVE RECONSTRUCTION',
     note: 'Illustrative interface reconstructed from source; replace with an emulator screenshot. The repository applies thresholds of 85g / 200g and a 2.5% calculation. This portfolio describes its implementation and does not provide religious or financial guidance.',
     sources: [{ label: 'Calculation implementation', url: 'https://github.com/alifmukhlis06-svg/zakat/blob/master/app/src/main/java/com/example/goldzakatcalculator/MainActivity.kt' }, { label: 'Android dependencies', url: 'https://github.com/alifmukhlis06-svg/zakat/blob/master/gradle/libs.versions.toml' }],
     featured: true,
@@ -99,9 +107,12 @@ export const projects: Project[] = [
     ],
     image: '/projects/gitc/logical-network-diagram.jpeg',
     imageLabel: 'Proposed GITC logical network diagram from the supplied project report',
+    previewLabel: 'NETWORK / DESIGN DOCUMENTATION',
+    previewBadge: 'REPORT-DERIVED DIAGRAM',
     note: 'Collaborative network design proposal documented in the supplied report. No production deployment, implementation testing, or sole ownership of the complete design is claimed.',
     sources: [],
     status: 'Collaborative design proposal',
+    featured: true,
     overviewTitle: 'A documented network proposal.',
     galleryTitle: 'Proposed network, mapped.',
     galleryIntro: 'Original logical and physical diagrams extracted from the supplied project report.',
@@ -201,9 +212,12 @@ export const projects: Project[] = [
     ],
     image: '/projects/smart-bathtub/monitoring-dashboard.jpeg',
     imageLabel: 'Smart Bathtub monitoring dashboard from the supplied project report',
+    previewLabel: 'IOT / PROTOTYPE DOCUMENTATION',
+    previewBadge: 'REPORT-DERIVED VISUAL',
     note: 'Collaborative prototype documented in the supplied report. The portfolio describes the group’s implementation and reported tests without claiming sole authorship or a production-ready product.',
     sources: [],
     status: 'Collaborative prototype',
+    featured: true,
     overviewTitle: 'Safety monitoring through connected hardware.',
     galleryTitle: 'From circuit to dashboard.',
     galleryIntro: 'Original implementation visuals extracted from the supplied project report.',
@@ -285,9 +299,12 @@ export const projects: Project[] = [
     ],
     image: '/projects/web-penetration-testing/automated-local-scan.jpeg',
     imageLabel: 'OWASP ZAP scanning the locally hosted test application',
+    previewLabel: 'SECURITY / ASSESSMENT EVIDENCE',
+    previewBadge: 'AUTHORIZED LOCAL ASSESSMENT',
     note: 'Collaborative assessment performed against a localhost application in an authorized learning environment. It is not presented as a professional client engagement or testing of a public system.',
     sources: [],
     status: 'Authorized local assessment',
+    featured: true,
     overviewTitle: 'A structured web security assessment.',
     galleryTitle: 'Evidence from the assessment.',
     galleryIntro: 'Original OWASP ZAP screenshots extracted from the supplied project report. URLs shown are localhost test routes.',
@@ -394,5 +411,7 @@ export const projects: Project[] = [
 ];
 
 export const featuredProjects = projects.filter(
-  (project): project is Project & { image: string; imageLabel: string } => Boolean(project.featured && project.image && project.imageLabel),
+  (project): project is Project & { image: string; imageLabel: string; previewLabel: string; previewBadge: string } => Boolean(
+    project.featured && project.image && project.imageLabel && project.previewLabel && project.previewBadge,
+  ),
 );
