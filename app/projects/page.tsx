@@ -18,7 +18,7 @@ export default function Projects() {
         {projects.map((project, index) => (
           <Reveal key={project.slug}>
             <Link href={`/projects/${project.slug}`} className="project-list-card">
-              <div className="project-list-image">
+              <div className={`project-list-image${project.imageFit === 'contain' ? ' project-list-image-contain' : ''}`}>
                 {project.image && project.imageLabel ? (
                   <img
                     src={assetPath(project.image)}

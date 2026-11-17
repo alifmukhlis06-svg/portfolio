@@ -24,6 +24,7 @@ export type Project = {
   github?: string;
   image?: string;
   imageLabel?: string;
+  imageFit?: 'cover' | 'contain';
   previewLabel?: string;
   previewBadge?: string;
   note: string;
@@ -380,6 +381,90 @@ export const projects: Project[] = [
           'Use parameterized queries plus input validation and output encoding.',
           'Enforce server-side authentication, authorization, and session checks.',
           'Add anti-CSRF tokens and validate all state-changing requests and parameters.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'flutter-user-directory',
+    name: 'Flutter User Directory Application',
+    category: 'MOBILE DEVELOPMENT / API INTEGRATION',
+    summary: 'A Flutter mobile client for browsing cloud-hosted user information.',
+    description: 'A Flutter and Dart application that retrieves user data from the JSONPlaceholder REST API through HTTPS GET requests, parses nested JSON into User, Address, and Company models, and presents the results in a mobile user directory.',
+    stack: ['Flutter', 'Dart', 'JSONPlaceholder REST API', 'HTTP', 'Android Emulator'],
+    features: [
+      'HTTPS GET requests to the JSONPlaceholder users endpoint',
+      'User, Address, and Company models with JSON parsing',
+      'Directory cards displaying each user’s name, email address, and city',
+      'Individual detail screens for contact, address, and company information',
+      'Loading indicator, connection-error state, and retry functionality',
+      'Tested using an Android Virtual Device emulator',
+    ],
+    image: '/projects/flutter-user-directory/user-directory.png',
+    imageLabel: 'Flutter User Directory list running in an Android emulator',
+    imageFit: 'contain',
+    note: 'Implementation details and screenshots are taken from the supplied lab report. The application was tested on an Android emulator; no public repository or live deployment was supplied.',
+    sources: [],
+    status: 'Android emulator-tested application',
+    overviewTitle: 'Cloud data in a focused mobile interface.',
+    galleryTitle: 'Application states and navigation.',
+    galleryIntro: 'Original Android-emulator screenshots extracted from the supplied lab report.',
+    gallery: [
+      {
+        src: '/projects/flutter-user-directory/user-directory.png',
+        alt: 'Flutter User Directory home screen listing names, email addresses, and cities in an Android emulator',
+        caption: 'User directory — names, email addresses, and cities from JSONPlaceholder',
+        width: 387,
+        height: 885,
+      },
+      {
+        src: '/projects/flutter-user-directory/user-details.png',
+        alt: 'Flutter user details screen showing contact, address, and company information',
+        caption: 'User details — contact, address, and nested company data',
+        width: 376,
+        height: 901,
+      },
+      {
+        src: '/projects/flutter-user-directory/loading-state.png',
+        alt: 'Flutter User Directory loading screen with a progress indicator',
+        caption: 'Loading state while the application retrieves users',
+        width: 391,
+        height: 905,
+      },
+      {
+        src: '/projects/flutter-user-directory/error-retry.png',
+        alt: 'Flutter User Directory offline error screen with a Retry button',
+        caption: 'Connection-error state with retry functionality',
+        width: 390,
+        height: 916,
+      },
+    ],
+    sections: [
+      {
+        eyebrow: 'API & DATA',
+        title: 'Structured REST API integration.',
+        items: [
+          'The application sends an HTTPS GET request to the JSONPlaceholder users endpoint.',
+          'Successful JSON responses are decoded into User, Address, and Company model objects.',
+          'Nested address and company fields are presented alongside core user information.',
+        ],
+      },
+      {
+        eyebrow: 'INTERFACE',
+        title: 'Directory and detail views.',
+        items: [
+          'A scrollable directory displays user names, email addresses, and cities.',
+          'Selecting a user opens a separate detail screen using Flutter navigation.',
+          'The detail view organizes contact, full address, and company information into sections.',
+        ],
+      },
+      {
+        eyebrow: 'STATE HANDLING',
+        title: 'Feedback across network states.',
+        items: [
+          'A loading indicator is shown while the request is in progress.',
+          'Connection failures display a clear error state instead of terminating the application.',
+          'The Retry control requests the data again after connectivity is restored.',
         ],
       },
     ],
