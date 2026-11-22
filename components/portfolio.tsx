@@ -1,7 +1,7 @@
 'use client';
 import Link from 'next/link';
 import { AnimatePresence, animate, motion, useInView, useReducedMotion } from 'framer-motion';
-import { ArrowDown, ArrowLeft, ArrowRight, ArrowUpRight, Code2, Network, Database, Cloud, Wrench, ShieldCheck, Cpu, Languages, Github, GraduationCap, BriefcaseBusiness, ImagePlus, Linkedin, Mail, FileText, Plus } from 'lucide-react';
+import { ArrowDown, ArrowLeft, ArrowRight, ArrowUpRight, Code2, Network, Database, Cloud, Wrench, ShieldCheck, Cpu, Languages, Github, GraduationCap, BriefcaseBusiness, ImagePlus, Linkedin, Mail, FileText, Download, Plus } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { assetPath } from '@/lib/asset-path';
 import { personal } from '@/content/personal';
@@ -25,7 +25,21 @@ export function Reveal({ children, className = '' }: { children: React.ReactNode
   return <div ref={ref} className={className}>{children}</div>;
 }
 export function Portrait({ small = false }: { small?: boolean }) { return personal.portrait ? <img className={small ? 'portrait-small' : 'portrait-photo'} src={assetPath(personal.portrait)} alt="Alif Mukhlis" /> : <div className={small ? 'portrait-small portrait-monogram' : 'portrait-placeholder'} role="img" aria-label="Portrait placeholder for Alif Mukhlis">{small ? 'AM' : <><svg viewBox="0 0 420 500" aria-hidden="true"><defs><linearGradient id="figure" x1="0" x2="1" y2="1"><stop stopColor="#a6a8aa" /><stop offset="1" stopColor="#333638" /></linearGradient><linearGradient id="jacket" x1="0" x2="0.8" y2="1"><stop stopColor="#34383a" /><stop offset="1" stopColor="#111516" /></linearGradient></defs><path d="M155 181 Q130 126 154 78 Q177 36 222 49 Q277 48 280 111 L266 181 245 211 178 211Z" fill="url(#figure)" /><path d="M178 183 L174 230 210 268 250 229 245 180" fill="#777b7d" /><path d="M172 218 L210 254 249 218 292 238 339 272 Q371 336 387 500H31Q47 326 83 271L128 240Z" fill="url(#jacket)" /><path d="M174 220 L210 252 249 220 234 351 209 417 185 352Z" fill="#bfc1c1" /><path d="M202 255L218 255 225 279 216 357 208 381 197 354 197 279Z" fill="#232729" /><path d="M160 223L122 265 165 284 147 309 208 426 177 282Z M259 224L295 266 254 284 270 310 212 425 243 282Z" fill="#424749" /></svg><span className="portrait-caption"><ImagePlus size={12} /> YOUR PORTRAIT HERE</span></>}</div>; }
-export function Hero() { return <section className="hero" aria-labelledby="hero-title"><div className="hero-topline"><span><i className="status-dot" /> PERSONAL PORTFOLIO</span><span>DEVELOPMENT · NETWORKS · IDEAS</span></div><motion.h1 id="hero-title" className="hero-name" initial={false} animate={{ opacity: [0.7, 1], y: [20, 0] }} transition={{ duration: 0.8 }}>ALIF MUKHLIS</motion.h1><motion.div className="hero-portrait" initial={false} animate={{ opacity: [0.7, 1], y: [20, 0] }} transition={{ duration: 0.8, delay: 0.1 }}><Portrait /></motion.div><div className="hero-side hero-side-left"><span className="eyebrow">HELLO, I’M ALIF</span><p>Netcentric Computing<br />student at UiTM Perlis.</p></div><div className="hero-side hero-side-right"><span className="eyebrow">{personal.distinction}</span><p>Projects across web,<br />networks, IoT &amp; security.</p></div><div className="hero-bottom"><span>NETCENTRIC COMPUTING<br /><b>UiTM Perlis</b></span><a href="#work" className="scroll-link">SCROLL TO EXPLORE <span><ArrowDown size={17} /></span></a><span className="hero-index">PORTFOLIO / 01</span></div></section>; }
+export function Hero() {
+  const resumePath = personal.resume ? assetPath(personal.resume) : null;
+  return <section className="hero" aria-labelledby="hero-title">
+    <div className="hero-topline"><span><i className="status-dot" /> PERSONAL PORTFOLIO</span><span>DEVELOPMENT · NETWORKS · IDEAS</span></div>
+    <motion.h1 id="hero-title" className="hero-name" initial={false} animate={{ opacity: [0.7, 1], y: [20, 0] }} transition={{ duration: 0.8 }}>ALIF MUKHLIS</motion.h1>
+    <motion.div className="hero-portrait" initial={false} animate={{ opacity: [0.7, 1], y: [20, 0] }} transition={{ duration: 0.8, delay: 0.1 }}><Portrait /></motion.div>
+    <div className="hero-side hero-side-left"><span className="eyebrow">HELLO, I’M ALIF</span><p>Netcentric Computing<br />student at UiTM Perlis.</p></div>
+    <div className="hero-side hero-side-right"><span className="eyebrow">{personal.distinction}</span><p>Projects across web,<br />networks, IoT &amp; security.</p></div>
+    {resumePath && <div className="hero-resume-actions">
+      <a className="resume-button" href={resumePath} target="_blank" rel="noopener noreferrer" aria-label="View résumé in a new tab"><FileText size={15} aria-hidden="true" /> View Résumé</a>
+      <a className="resume-button resume-button-primary" href={resumePath} download={personal.resumeDownloadName}><Download size={15} aria-hidden="true" /> Download Résumé</a>
+    </div>}
+    <div className="hero-bottom"><span>NETCENTRIC COMPUTING<br /><b>UiTM Perlis</b></span><a href="#work" className="scroll-link">SCROLL TO EXPLORE <span><ArrowDown size={17} /></span></a><span className="hero-index">PORTFOLIO / 01</span></div>
+  </section>;
+}
 export function Gallery() {
   const [active, setActive] = useState(0);
   const reduce = useReducedMotion();

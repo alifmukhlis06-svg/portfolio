@@ -11,6 +11,6 @@ export const personal = {
   portrait: '/photos/alif-mukhlis-suit.png' as string | null,
   email: 'alifmukhlis06@gmail.com' as string | null,
   linkedin: 'https://www.linkedin.com/in/alif-mukhlis-865665314' as string | null,
-  // A LinkedIn profile export is not presented as a prepared résumé.
-  resume: null as string | null,
+  resume: '/documents/Alif_Mukhlis_Master_Resume.pdf' as string | null,
+  resumeDownloadName: 'Alif_Mukhlis_Master_Resume.pdf',
 };

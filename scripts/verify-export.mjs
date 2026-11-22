@@ -10,6 +10,14 @@ await stat(resolve(root, '.nojekyll'));
 const home = await readFile(resolve(root, 'index.html'), 'utf8');
 assert.ok(home.includes('hero-title'), 'Export must contain the portfolio, not the README');
 assert.ok(!home.includes('Jekyll SEO tag'), 'Jekyll output is not the application');
+const resumeFilename = 'Alif_Mukhlis_Master_Resume.pdf';
+const resumeDownloadName = 'Alif_Mukhlis_Master_Resume.pdf';
+const resumeSource = await readFile(resolve('public', 'documents', resumeFilename));
+const resumeExport = await readFile(resolve(root, 'documents', resumeFilename));
+assert.ok(resumeSource.equals(resumeExport), 'Exported Master Résumé must match the source PDF exactly');
+const resumeHref = `${basePath}/documents/${resumeFilename}`;
+assert.ok(home.split(resumeHref).length >= 3, 'Home page must link to the Master Résumé for viewing and downloading');
+assert.ok(home.includes(`download="${resumeDownloadName}"`), 'Home page must provide the professional résumé download filename');
 
 let references = 0;
 async function walk(directory) {
