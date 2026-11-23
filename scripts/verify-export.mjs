@@ -13,6 +13,7 @@ const routes = [
   'projects/gitc-enterprise-network-design',
   'projects/smart-bathtub-safety-monitoring',
   'projects/web-application-penetration-testing',
+  'projects/dvwa-vulnerability-assessment',
   'projects/flutter-user-directory',
   'projects/coffee-shop-website',
   'projects/online-library-system',
