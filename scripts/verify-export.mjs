@@ -4,7 +4,20 @@ import { resolve, relative, sep } from 'node:path';
 
 const root = resolve('out');
 const basePath = '/portfolio';
-const routes = ['', 'projects', 'projects/internpilih', 'projects/getinthecar', 'projects/zakat', 'beyond-code'];
+const routes = [
+  '',
+  'projects',
+  'projects/internpilih',
+  'projects/getinthecar',
+  'projects/zakat',
+  'projects/gitc-enterprise-network-design',
+  'projects/smart-bathtub-safety-monitoring',
+  'projects/web-application-penetration-testing',
+  'projects/flutter-user-directory',
+  'projects/coffee-shop-website',
+  'projects/online-library-system',
+  'beyond-code',
+];
 for (const route of routes) await stat(resolve(root, route, 'index.html'));
 await stat(resolve(root, '.nojekyll'));
 const home = await readFile(resolve(root, 'index.html'), 'utf8');

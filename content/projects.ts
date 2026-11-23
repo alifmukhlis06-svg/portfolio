@@ -35,6 +35,7 @@ export type Project = {
   galleryTitle?: string;
   galleryIntro?: string;
   gallery?: ProjectGalleryImage[];
+  galleryAfterDetails?: boolean;
   sections?: ProjectSection[];
 };
 
@@ -60,18 +61,146 @@ export const projects: Project[] = [
   {
     slug: 'getinthecar',
     name: 'GetInTheCar',
-    category: 'WEB APPLICATION / E-HAILING',
-    summary: 'A simpler way to plan a ride.',
-    description: 'A browser-based e-hailing interface with pickup and destination fields, vehicle selection, fare estimation, driver selection, and ride-history views. The inspected booking flow uses client-side demo data and simulated matching.',
-    stack: ['HTML', 'CSS', 'JavaScript'],
-    features: ['Pickup and destination booking interface', 'Car and motorcycle selection', 'Distance-based fare calculation with minimum fares', 'Simulated driver selection and ride history'],
+    category: 'UX CASE STUDY / E-HAILING',
+    summary: 'Designing a campus-focused ride experience for UiTM Arau students.',
+    description: 'GetInTheCar is a collaborative five-member e-hailing system concept and front-end prototype for UiTM students around the Arau, Perlis campus area. The project explores how passengers, student drivers, and administrators could manage ride requests, price offers, bookings, and ride records through one responsive web experience. My documented role was UI/UX Designer.',
+    stack: ['HTML5', 'CSS3', 'Vanilla JavaScript', 'Browser Storage', 'Google Maps Embed'],
+    features: [
+      'Passenger booking interface with pickup, destination, vehicle, fare-estimate, and ride-history views',
+      'Driver request cards with editable price offers, accept or decline controls, and trip-state actions',
+      'Administrator dashboards for sample user, driver, ride, and report management',
+      'Responsive multi-page interface built with static HTML, CSS, and client-side JavaScript',
+    ],
     github: 'https://github.com/alifmukhlis06-svg/GetInTheCar',
     image: '/projects/getinthecar.webp',
-    imageLabel: 'GetInTheCar booking interface rendered from public source',
+    imageLabel: 'Passenger booking interface rendered from the GetInTheCar source repository',
     previewLabel: 'GETINTHECAR / BOOKING INTERFACE',
     previewBadge: 'SOURCE-RENDERED INTERFACE',
-    note: 'Source-rendered interface. Driver matching and ride records in the inspected flow are simulated; this is not presented as a live transport service.',
-    sources: [{ label: 'Booking interface source', url: 'https://github.com/alifmukhlis06-svg/GetInTheCar/blob/main/user.html' }],
+    note: 'Repository inspection confirms a static front-end prototype. It does not contain a backend, database integration, real-time transport tracking, payment gateway, or cross-user messaging service. Matching, price comparison, chat responses, ride updates, reports, and earnings use hard-coded sample data or client-side simulation.',
+    sources: [
+      { label: 'Public source tree', url: 'https://github.com/alifmukhlis06-svg/GetInTheCar' },
+      { label: 'Passenger booking prototype', url: 'https://github.com/alifmukhlis06-svg/GetInTheCar/blob/main/user.html' },
+      { label: 'Driver request prototype', url: 'https://github.com/alifmukhlis06-svg/GetInTheCar/blob/main/driver.html' },
+      { label: 'Administrator prototype', url: 'https://github.com/alifmukhlis06-svg/GetInTheCar/blob/main/admin.html' },
+    ],
+    status: 'Collaborative five-member academic project · Documented role: UI/UX Designer',
+    overviewTitle: 'One ride concept, shaped around three campus roles.',
+    galleryTitle: 'The system, mapped from four perspectives.',
+    galleryIntro: 'Original diagrams extracted from the supplied project report. They document the proposed system design and should not be read as evidence of a connected production backend.',
+    galleryAfterDetails: true,
+    gallery: [
+      {
+        src: '/projects/getinthecar/use-case-diagram.png',
+        alt: 'GetInTheCar use case diagram showing passenger, driver, and administrator interactions',
+        caption: 'Use Case Diagram — proposed passenger, driver, and administrator capabilities',
+        width: 1560,
+        height: 1350,
+      },
+      {
+        src: '/projects/getinthecar/class-diagram.png',
+        alt: 'GetInTheCar class diagram for users, passengers, drivers, ride requests, price offers, bookings, ratings, reports, notifications, vehicles, and messages',
+        caption: 'Class Diagram — proposed domain objects and relationships',
+        width: 1600,
+        height: 2160,
+      },
+      {
+        src: '/projects/getinthecar/sequence-diagram.png',
+        alt: 'GetInTheCar sequence diagram showing proposed interactions between administrator, driver, passenger, application, backend, and database',
+        caption: 'Sequence Diagram — proposed request, booking, ride, profile, and administration exchanges',
+        width: 1450,
+        height: 2050,
+      },
+      {
+        src: '/projects/getinthecar/activity-diagram.png',
+        alt: 'GetInTheCar activity diagram with swimlanes for user, e-hailing system, driver, and administrator',
+        caption: 'Activity Diagram — proposed end-to-end workflows across the four swimlanes',
+        width: 1400,
+        height: 2140,
+      },
+    ],
+    sections: [
+      {
+        eyebrow: 'PROJECT OVERVIEW & OBJECTIVES',
+        title: 'A clearer campus ride journey.',
+        items: [
+          'The concept targets UiTM students travelling in and around the Arau, Perlis campus area.',
+          'It aims to centralize ride requests, driver price comparison, booking records, and role-specific management in a mobile-friendly web experience.',
+          'The supplied report describes a broader future system; the repository demonstrates its interface direction as a static prototype.',
+        ],
+      },
+      {
+        eyebrow: 'MY ROLE & COLLABORATION',
+        title: 'UI/UX design within a five-member team.',
+        items: [
+          'The source report documents my role as UI/UX Designer alongside a project manager, system analyst, software engineer, and quality assurance role.',
+          'My contribution is represented through the role-based interface structure and passenger, driver, and administrator interaction flows.',
+          'The repository is collaborative and does not identify file-level authorship, so this case study does not claim sole ownership of the implementation or system models.',
+        ],
+      },
+      {
+        eyebrow: 'PASSENGER WORKFLOW',
+        title: 'From route entry to a simulated booking.',
+        items: [
+          'The source provides demo login, pickup and destination inputs, book-now or book-later states, car or motorcycle selection, a local fare estimate, and a Google Maps embed.',
+          'Generated driver cards let a passenger compare sample names, vehicles, ETAs, and calculated prices before confirming a selection.',
+          'My Rides and profile screens present current, upcoming, and past-ride information through hard-coded client-side data; no live trip is created.',
+        ],
+      },
+      {
+        eyebrow: 'DRIVER WORKFLOW',
+        title: 'Requests, offers, and trip states as interface interactions.',
+        items: [
+          'A driver can toggle availability, review sample request cards, adjust a price field, and use accept or decline controls.',
+          'Accepted rides move through arrival, start-trip, and complete-trip interface states using DOM updates and timers.',
+          'Schedule, earnings, and driver-profile pages visualize sample records and controls; they are not connected to passenger sessions or financial services.',
+        ],
+      },
+      {
+        eyebrow: 'ADMINISTRATOR WORKFLOW',
+        title: 'Operational views built around sample data.',
+        items: [
+          'The admin dashboard renders hard-coded user, driver, and recent-ride arrays with search, filtering, edit, create, status, and summary interactions.',
+          'Dedicated management and reporting pages extend the interface with tables, charts, pagination, modals, and export controls.',
+          'These actions update in-memory browser data or simulate completion; there is no server-side account store, monitoring service, or persistent report pipeline.',
+        ],
+      },
+      {
+        eyebrow: 'RIDE REQUESTS & PRICE OFFERS',
+        title: 'A designed bidding flow, not live bidding.',
+        items: [
+          'Implemented in the prototype: route fields, locally calculated estimates, generated driver options with price multipliers, and editable offer controls on the driver page.',
+          'Proposed in the report: broadcasting a passenger request to available drivers and returning independent driver offers to the passenger.',
+          'Not source-verified: real-time synchronization, driver notifications, concurrent bidding, or a shared booking service between users.',
+        ],
+      },
+      {
+        eyebrow: 'BOOKING MANAGEMENT',
+        title: 'Rich interface states with explicit boundaries.',
+        items: [
+          'Implemented as client-side UI: confirmation sequences, recent and historical ride cards, upcoming or past tabs, cancellation and rating controls, and simulated chat replies.',
+          'Proposed as system requirements: persisted bookings, synchronized ride status, rating records, payment processing, and passenger-driver communication.',
+          'Real-time tracking, payment processing, live messaging, and real driver matching are not implemented in the inspected repository.',
+        ],
+      },
+      {
+        eyebrow: 'ARCHITECTURE & DESIGN',
+        title: 'Static prototype today, connected system in the models.',
+        items: [
+          'The verified source is a multi-page front end made from HTML, CSS, vanilla JavaScript, local assets, a Google Maps iframe, and limited local or session storage for demo login state.',
+          'Hard-coded arrays, DOM manipulation, random values, and timers drive most interactions; no API calls, application server, database schema, package manifest, or framework is present.',
+          'The report’s class and sequence diagrams introduce backend and database layers as design intent. Mobile browser usability, clear role separation, campus scope, data integrity, and privacy are documented design considerations.',
+        ],
+      },
+      {
+        eyebrow: 'IMPLEMENTATION STATUS',
+        title: 'What exists, what is proposed, and what remains design-only.',
+        items: [
+          'Actual implemented functionality — navigable responsive screens, local calculations, filters, modals, charts, role-based dashboards, and simulated state changes inside the browser.',
+          'Proposed system requirements — secure authentication, synchronized ride requests and price offers, persistent bookings, ratings, payments, and multi-user reliability.',
+          'Design-only functionality — backend and database exchanges, real-time tracking, external notifications, live driver bidding, production messaging, and payment processing.',
+        ],
+      },
+    ],
     featured: true,
   },
   {

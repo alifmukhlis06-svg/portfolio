@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { ArrowLeft, ArrowRight, ArrowUpRight, Github } from 'lucide-react';
-import { projects } from '@/content/projects';
+import { ArrowLeft, ArrowRight, ArrowUpRight, Github, Maximize2 } from 'lucide-react';
+import { projects, type Project } from '@/content/projects';
 import { assetPath } from '@/lib/asset-path';
 
 export function generateStaticParams() {
@@ -14,6 +14,30 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const project = projects.find(item => item.slug === slug);
   return { title: project?.name ?? 'Project not found', description: project?.summary };
+}
+
+function ProjectMedia({ project }: { project: Project }) {
+  if (!project.gallery) return null;
+  const titleId = `${project.slug}-media-title`;
+
+  return (
+    <section className={`project-media project-media-${project.slug}`} aria-labelledby={titleId}>
+      <span className="eyebrow">PROJECT VISUALS</span>
+      <h2 id={titleId}>{project.galleryTitle}</h2>
+      <p>{project.galleryIntro} Open any image to inspect it at full resolution.</p>
+      <div className="diagram-gallery">
+        {project.gallery.map((image, index) => (
+          <figure className={index === 0 ? 'diagram-featured' : undefined} key={image.src}>
+            <a href={assetPath(image.src)} target="_blank" rel="noopener noreferrer" aria-label={`Open full-size ${image.caption}`}>
+              <img src={assetPath(image.src)} alt={image.alt} width={image.width} height={image.height} loading={index ? 'lazy' : 'eager'} />
+              <span className="diagram-expand" aria-hidden="true"><Maximize2 size={13} /> Full size</span>
+            </a>
+            <figcaption>{image.caption}</figcaption>
+          </figure>
+        ))}
+      </div>
+    </section>
+  );
 }
 
 export default async function Detail({ params }: { params: Promise<{ slug: string }> }) {
@@ -37,22 +61,8 @@ export default async function Detail({ params }: { params: Promise<{ slug: strin
         </div>
       )}
 
-      {project.gallery ? (
-        <section className="project-media" aria-labelledby="project-media-title">
-          <span className="eyebrow">PROJECT VISUALS</span>
-          <h2 id="project-media-title">{project.galleryTitle}</h2>
-          <p>{project.galleryIntro} Open any image to inspect it at full resolution.</p>
-          <div className="diagram-gallery">
-            {project.gallery.map((image, index) => (
-              <figure className={index === 0 ? 'diagram-featured' : undefined} key={image.src}>
-                <a href={assetPath(image.src)} target="_blank" rel="noopener noreferrer" aria-label={`Open full-size ${image.caption}`}>
-                  <img src={assetPath(image.src)} alt={image.alt} width={image.width} height={image.height} loading={index ? 'lazy' : 'eager'} />
-                </a>
-                <figcaption>{image.caption}</figcaption>
-              </figure>
-            ))}
-          </div>
-        </section>
+      {project.gallery && !project.galleryAfterDetails ? (
+        <ProjectMedia project={project} />
       ) : project.image && project.imageLabel ? (
         <figure className="detail-image">
           <img src={assetPath(project.image)} alt={project.imageLabel} width={1440} height={900} />
@@ -98,6 +108,8 @@ export default async function Detail({ params }: { params: Promise<{ slug: strin
           ))}
         </section>
       )}
+
+      {project.galleryAfterDetails && <ProjectMedia project={project} />}
 
       <Link className="next-project-link" href={`/projects/${next.slug}`}>
         <span><small className="eyebrow">NEXT PROJECT</small><strong>{next.name}</strong></span>

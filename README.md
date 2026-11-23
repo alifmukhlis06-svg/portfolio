@@ -20,7 +20,7 @@ Open http://localhost:3000/portfolio/ during development. For a production previ
 - `public/.nojekyll` is copied into `out/`. The deployment artifact is `out/`, never the repository root or README.
 - `.github/workflows/pages.yml` installs dependencies, checks TypeScript, builds and validates the export, then uploads/deploys it with GitHub's Pages actions. It runs **only through a manual workflow dispatch**; pushes do not automatically redeploy.
 - After approval to publish, select **Settings → Pages → Build and deployment → Source: GitHub Actions**, push the reviewed changes, then manually run **Build and deploy portfolio to GitHub Pages** on `main`. These repository settings and deployment have not been changed by the local fix.
-- The generated site includes the homepage, project index, all three project detail pages, Beyond Code, and a static 404 page. Local verification checks route files, public assets, CSS/JavaScript references, and visible initial HTML.
+- The generated site includes the homepage, project index, every configured project detail page, Beyond Code, and a static 404 page. Local verification checks every project route, public assets, CSS/JavaScript references, and visible initial HTML.
 - `npm run build` also runs `scripts/finalize-export.mjs` through the `postbuild` lifecycle. It adds correctly flattened filenames for any nested RSC segment files affected by the [Next.js Windows export issue](https://github.com/vercel/next.js/issues/85374). It leaves Next.js dependencies untouched and is a no-op when the export already has the correct names. `verify:export` validates these files as well as HTML links.
 
 This workspace also contains an ignored portable runtime. If Node is not on your Windows PATH, use:
@@ -50,16 +50,16 @@ Place assets in `public/` and configure their URL paths, for example `/photos/al
 
 - `/`: hero, interactive gallery, capabilities, about, achievements, timeline, contact.
 - `/projects`: technical projects index.
-- `/projects/internpilih`, `/projects/getinthecar`, `/projects/zakat`: individual project pages.
+- `/projects/[slug]`: one statically exported detail page for every entry in `content/projects.ts`, including `/projects/getinthecar`.
 - `/beyond-code`: personal interests and photo collection.
 - Carousel supports arrows, focused keyboard navigation, project dots, and touch dragging. Reduced-motion preferences are respected. Theme selection persists locally.
 
 ## Project verification and imagery
 
-Public repositories inspected on 9 November 2026:
+Public repositories were initially inspected on 9 November 2026. GetInTheCar was re-inspected at commit `be913812649ee7e24f2141c402e01b0aac4dc28b` on 23 November 2026:
 
 - [InternPilih](https://github.com/alifmukhlis06-svg/InternPilih): HTML/CSS/JavaScript frontend and PHP API files for internship applications, offers, documents, verification, and reports. Preview captured from its public deployment; backend behavior was not independently exercised.
-- [GetInTheCar](https://github.com/alifmukhlis06-svg/GetInTheCar/blob/main/user.html): browser booking interface, car/motor selection, distance-based fares, simulated driver matching, and demo ride history. Preview rendered from the unchanged public HTML/CSS and assets. The source repositories were not modified.
+- [GetInTheCar](https://github.com/alifmukhlis06-svg/GetInTheCar): static HTML/CSS/JavaScript passenger, driver, and administrator interfaces. Hard-coded arrays, DOM updates, timers, local/session storage, and simulated responses drive the prototype. The repository contains no backend, database integration, live tracking, payment gateway, real-time bidding service, or cross-user messaging service. The portfolio publishes only the four requested system diagrams extracted from the supplied report, not the academic report itself.
 - [Zakat](https://github.com/alifmukhlis06-svg/zakat): native Android gold-zakat calculator. `MainActivity.kt`, XML layout tree, and dependency catalog establish Kotlin, Android, XML layouts, Material Components, and Gradle. Its SVG preview is explicitly an illustrative reconstruction, not an emulator screenshot. Calculation details are software descriptions rather than guidance.
 
 The portfolio does not claim its own Next.js/React stack as part of Alif’s verified historical project experience. Technology tiles use editable typographic marks and accessible text labels.
@@ -71,10 +71,10 @@ Content was updated from the user’s confirmed details and supplied LinkedIn ex
 - The export supports the JPA Scholar headline, email address, Diploma in Computer Science (October 2022–February 2025), and Bachelor of Computer Science (Hons.) Netcentric Computing (March 2025–September 2027, expected completion).
 - Academic exposure to Linux administration, networking, databases, and cybersecurity is described as coursework, without claiming professional proficiency. Existing project technologies and all three featured projects are preserved.
 - The user explicitly confirmed the hospital internship as September 2024–February 2025 and supplied its responsibilities. Those details take precedence over the export’s Global Elite Ventures Sdn Bhd entry, which ends in March 2025 and describes a placement at the hospital. Confirm the employer/placement relationship and end date before adding the company to the portfolio.
-- Dean’s List recognition across multiple semesters is confirmed by the user. No semester numbers, grades, or award dates were supplied or invented.
+- Dean’s List recognition for three consecutive semesters—Semesters 3, 4, and 5—is confirmed by the user. No grades or award dates were supplied or invented.
 - The attached portrait is HEIC despite its `.jpeg` extension. It was converted to browser-compatible JPEG without retouching and stored at `public/photos/alif-mukhlis.jpg`.
 
-Manual input still needed: exact Dean’s List semesters and dates; certification/course titles, issuers, dates and credentials; any additional honors, activities or accomplishments; and resolution of the internship discrepancy. The export contains no certification, training credential, or activity entries. Academic coursework appears under Training & Experience; it is not represented as certification. The original live LinkedIn headline/About wording and any updates beyond the export could not be verified.
+Manual input still needed: exact Dean’s List dates; certification/course titles, issuers, dates and credentials; any additional honors, activities or accomplishments; and resolution of the internship discrepancy. The export contains no certification, training credential, or activity entries. Academic coursework appears under Training & Experience; it is not represented as certification. The original live LinkedIn headline/About wording and any updates beyond the export could not be verified.
 
 Optional remaining assets: achievement/event photographs, a prepared résumé, and a Zakat emulator/device screenshot. The profile export has not been published as a résumé.
 
@@ -88,7 +88,7 @@ Public source was inspected read-only through GitHub's API and raw files:
 | --- | --- |
 | InternPilih | [`config/database.php`](https://github.com/alifmukhlis06-svg/InternPilih/blob/main/config/database.php) and `config/DatabaseConnection.php` establish PostgreSQL connectivity; [`database/supabase/schema.sql`](https://github.com/alifmukhlis06-svg/InternPilih/blob/main/database/supabase/schema.sql) contains PostgreSQL schema definitions; [`api/storage-client.php`](https://github.com/alifmukhlis06-svg/InternPilih/blob/main/api/storage-client.php) integrates Supabase Storage. |
 | InternPilih | [`vercel.json`](https://github.com/alifmukhlis06-svg/InternPilih/blob/main/vercel.json) configures deployment; `VERCEL-DEPLOYMENT-READINESS.md` reports protected preview checks. These files establish implementation evidence, not a new independent backend or production verification. |
-| GetInTheCar | Public source tree and the previously inspected `user.html` support HTML, CSS and JavaScript browser interface usage. |
+| GetInTheCar | The source tree verifies static HTML5, CSS3, vanilla JavaScript, browser storage, and a Google Maps embed. Passenger, driver, and administrator workflows are interface prototypes backed by sample client-side data rather than production services. |
 | Zakat | Kotlin Android application, XML layouts, Gradle and Material Components remain supported by the public project source. It is not attributed to Flutter or Dart. |
 
 Git/GitHub and the additional Java, C++, IDE, Flutter/Dart, design and productivity tool usage are confirmed by the user's supplied background and current request. Their use is not assigned to a particular repository without source evidence. Diploma database descriptions and hospital support duties remain based on user-provided information. The separate diploma toolkit display has been removed; academic-only security, forensic, cloud, IoT and AI subjects remain in expandable coursework. No other repository was modified.
