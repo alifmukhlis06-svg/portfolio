@@ -13,7 +13,8 @@ export type ProjectSection = {
 };
 
 export type ProjectCover = {
-  theme: 'lavender' | 'blue';
+  theme: 'lavender' | 'blue' | 'navy' | 'charcoal';
+  frame?: 'phone' | 'window';
   title: string;
   subtitle: string;
   tagline: string;
@@ -441,6 +442,17 @@ export const projects: Project[] = [
     ],
     image: '/projects/web-penetration-testing/automated-local-scan.jpeg',
     imageLabel: 'OWASP ZAP scanning the locally hosted test application',
+    cover: {
+      theme: 'navy',
+      frame: 'window',
+      title: 'Web Application Penetration Testing',
+      subtitle: 'Authorized Web Security Assessment',
+      tagline: 'Structured testing in a controlled environment.',
+      screenshot: '/projects/web-penetration-testing/automated-local-scan.jpeg',
+      screenshotAlt: 'OWASP ZAP automated scan running against the authorized localhost application',
+      screenshotWidth: 1916,
+      screenshotHeight: 1021,
+    },
     previewLabel: 'SECURITY / ASSESSMENT EVIDENCE',
     previewBadge: 'AUTHORIZED LOCAL ASSESSMENT',
     note: 'Collaborative assessment performed against a localhost application in an authorized learning environment. It is not presented as a professional client engagement or testing of a public system.',
@@ -543,6 +555,17 @@ export const projects: Project[] = [
     ],
     image: '/projects/dvwa-vulnerability-assessment/dvwa-testing-environment.png',
     imageLabel: 'DVWA Command Injection module in the controlled local testing environment',
+    cover: {
+      theme: 'charcoal',
+      frame: 'window',
+      title: 'DVWA Vulnerability Assessment',
+      subtitle: 'Controlled Vulnerability Lab',
+      tagline: 'Learning secure design through deliberate flaws.',
+      screenshot: '/projects/dvwa-vulnerability-assessment/command-injection-result.png',
+      screenshotAlt: 'DVWA Command Injection module displaying command output in the controlled local lab',
+      screenshotWidth: 590,
+      screenshotHeight: 315,
+    },
     note: 'Individual project performed against DVWA in a controlled local virtualized environment. The report documents successful demonstrations at the Low security level. It does not establish a professional client engagement, production-system testing, discovery of unknown vulnerabilities, or implemented remediation. The academic report itself is not published.',
     sources: [],
     status: 'Individual controlled lab project',
