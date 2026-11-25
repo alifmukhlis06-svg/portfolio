@@ -12,6 +12,17 @@ export type ProjectSection = {
   items: string[];
 };
 
+export type ProjectCover = {
+  theme: 'lavender' | 'blue';
+  title: string;
+  subtitle: string;
+  tagline: string;
+  screenshot: string;
+  screenshotAlt: string;
+  screenshotWidth: number;
+  screenshotHeight: number;
+};
+
 export type Project = {
   slug: string;
   name: string;
@@ -25,6 +36,7 @@ export type Project = {
   image?: string;
   imageLabel?: string;
   imageFit?: 'cover' | 'contain';
+  cover?: ProjectCover;
   previewLabel?: string;
   previewBadge?: string;
   note: string;
@@ -638,6 +650,16 @@ export const projects: Project[] = [
     image: '/projects/campusvoice/road-negative.png',
     imageLabel: 'CampusVoice running on a Pixel 10a with a negative road classification result',
     imageFit: 'contain',
+    cover: {
+      theme: 'lavender',
+      title: 'CampusVoice',
+      subtitle: 'AI-Powered Student Feedback',
+      tagline: 'Smarter feedback through local AI.',
+      screenshot: '/projects/campusvoice/road-negative.png',
+      screenshotAlt: 'CampusVoice complaint submission with a negative road classification result',
+      screenshotWidth: 540,
+      screenshotHeight: 1212,
+    },
     note: 'Source-verified academic project. Classification history and connection settings exist only for the current app process. The genuine Pixel 10a screenshots were extracted from the supplied updated project report and use demo identities. Screenshots containing private connection details were deliberately excluded. The private local AI environment is not presented as a commercial or publicly deployed service.',
     sources: [],
     status: 'Academic Flutter and local AI integration project',
@@ -790,6 +812,16 @@ export const projects: Project[] = [
     image: '/projects/flutter-user-directory/user-directory.png',
     imageLabel: 'Flutter User Directory list running in an Android emulator',
     imageFit: 'contain',
+    cover: {
+      theme: 'blue',
+      title: 'User Directory',
+      subtitle: 'Flutter REST API Application',
+      tagline: 'Simple access to connected data.',
+      screenshot: '/projects/flutter-user-directory/user-directory.png',
+      screenshotAlt: 'Flutter User Directory application listing connected user data',
+      screenshotWidth: 387,
+      screenshotHeight: 885,
+    },
     note: 'Implementation details and screenshots are taken from the supplied lab report. The application was tested on an Android emulator; no public repository or live deployment was supplied.',
     sources: [],
     status: 'Android emulator-tested application',

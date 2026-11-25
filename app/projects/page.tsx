@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { ArrowLeft, ArrowUpRight } from 'lucide-react';
 import { Reveal } from '@/components/portfolio';
+import { ProjectCover } from '@/components/project-cover';
 import { projects } from '@/content/projects';
 import { assetPath } from '@/lib/asset-path';
 
@@ -18,8 +19,10 @@ export default function Projects() {
         {projects.map((project, index) => (
           <Reveal key={project.slug}>
             <Link href={`/projects/${project.slug}`} className="project-list-card">
-              <div className={`project-list-image${project.imageFit === 'contain' ? ' project-list-image-contain' : ''}`}>
-                {project.image && project.imageLabel ? (
+              <div className={`project-list-image${project.imageFit === 'contain' ? ' project-list-image-contain' : ''}${project.cover ? ' project-list-image-designed' : ''}`}>
+                {project.cover ? (
+                  <ProjectCover cover={project.cover} />
+                ) : project.image && project.imageLabel ? (
                   <img
                     src={assetPath(project.image)}
                     alt={project.imageLabel}
