@@ -13,15 +13,17 @@ export type ProjectSection = {
 };
 
 export type ProjectCover = {
-  theme: 'lavender' | 'blue' | 'navy' | 'charcoal';
-  frame?: 'phone' | 'window';
+  theme: 'lavender' | 'blue' | 'navy' | 'charcoal' | 'teal' | 'sunset' | 'indigo' | 'violet' | 'gold';
+  frame?: 'phone' | 'window' | 'diagram' | 'panel' | 'typography';
   title: string;
   subtitle: string;
   tagline: string;
-  screenshot: string;
-  screenshotAlt: string;
-  screenshotWidth: number;
-  screenshotHeight: number;
+  screenshot?: string;
+  screenshotAlt?: string;
+  screenshotWidth?: number;
+  screenshotHeight?: number;
+  mark?: string;
+  markLabel?: string;
 };
 
 export type Project = {
@@ -65,6 +67,17 @@ export const projects: Project[] = [
     github: 'https://github.com/alifmukhlis06-svg/InternPilih',
     image: '/projects/internpilih.webp',
     imageLabel: 'InternPilih public landing page',
+    cover: {
+      theme: 'teal',
+      frame: 'window',
+      title: 'InternPilih',
+      subtitle: 'Internship Management Portal',
+      tagline: 'Connecting students to their next chapter.',
+      screenshot: '/projects/internpilih.webp',
+      screenshotAlt: 'InternPilih public landing page for students, coordinators, and employers',
+      screenshotWidth: 1440,
+      screenshotHeight: 900,
+    },
     previewLabel: 'internpilih.vercel.app',
     previewBadge: 'FEATURED PROJECT',
     note: 'Landing-page capture from the public deployment. Feature descriptions are based on the public repository; production backend behavior has not been independently tested.',
@@ -87,6 +100,17 @@ export const projects: Project[] = [
     github: 'https://github.com/alifmukhlis06-svg/GetInTheCar',
     image: '/projects/getinthecar.webp',
     imageLabel: 'Passenger booking interface rendered from the GetInTheCar source repository',
+    cover: {
+      theme: 'sunset',
+      frame: 'window',
+      title: 'GetInTheCar',
+      subtitle: 'Campus E-Hailing UX Prototype',
+      tagline: 'Designing a clearer campus ride experience.',
+      screenshot: '/projects/getinthecar.webp',
+      screenshotAlt: 'GetInTheCar passenger booking interface with campus map and ride controls',
+      screenshotWidth: 1440,
+      screenshotHeight: 900,
+    },
     previewLabel: 'GETINTHECAR / BOOKING INTERFACE',
     previewBadge: 'SOURCE-RENDERED INTERFACE',
     note: 'Repository inspection confirms a static front-end prototype. It does not contain a backend, database integration, real-time transport tracking, payment gateway, or cross-user messaging service. Matching, price comparison, chat responses, ride updates, reports, and earnings use hard-coded sample data or client-side simulation.',
@@ -227,6 +251,15 @@ export const projects: Project[] = [
     github: 'https://github.com/alifmukhlis06-svg/zakat',
     image: '/projects/zakat.svg',
     imageLabel: 'Illustrative reconstruction based on the Android XML layout; not an app screenshot',
+    cover: {
+      theme: 'gold',
+      frame: 'typography',
+      title: 'Gold Zakat Calculator',
+      subtitle: 'Native Android Application',
+      tagline: 'A clearer view of the numbers.',
+      mark: '2.5%',
+      markLabel: 'Source-verified calculation rate',
+    },
     previewLabel: 'ANDROID / INTERFACE STUDY',
     previewBadge: 'ILLUSTRATIVE RECONSTRUCTION',
     note: 'Illustrative interface reconstructed from source; replace with an emulator screenshot. The repository applies thresholds of 85g / 200g and a 2.5% calculation. This portfolio describes its implementation and does not provide religious or financial guidance.',
@@ -250,6 +283,17 @@ export const projects: Project[] = [
     ],
     image: '/projects/gitc/logical-network-diagram.jpeg',
     imageLabel: 'Proposed GITC logical network diagram from the supplied project report',
+    cover: {
+      theme: 'indigo',
+      frame: 'diagram',
+      title: 'GITC Enterprise Network Design',
+      subtitle: 'Networking & Infrastructure',
+      tagline: 'A resilient network proposal for a new driver centre.',
+      screenshot: '/projects/gitc/logical-network-diagram.jpeg',
+      screenshotAlt: 'Proposed GITC three-tier enterprise network topology diagram',
+      screenshotWidth: 1963,
+      screenshotHeight: 1902,
+    },
     previewLabel: 'NETWORK / DESIGN DOCUMENTATION',
     previewBadge: 'REPORT-DERIVED DIAGRAM',
     note: 'Collaborative network design proposal documented in the supplied report. No production deployment, implementation testing, or sole ownership of the complete design is claimed.',
@@ -355,6 +399,17 @@ export const projects: Project[] = [
     ],
     image: '/projects/smart-bathtub/monitoring-dashboard.jpeg',
     imageLabel: 'Smart Bathtub monitoring dashboard from the supplied project report',
+    cover: {
+      theme: 'violet',
+      frame: 'panel',
+      title: 'Smart Bathtub Safety & Monitoring System',
+      subtitle: 'Connected IoT Safety Prototype',
+      tagline: 'Water monitoring, control, and cloud visibility.',
+      screenshot: '/projects/smart-bathtub/monitoring-dashboard.jpeg',
+      screenshotAlt: 'Smart Bathtub dashboard showing water, temperature, pump, and safety status',
+      screenshotWidth: 1188,
+      screenshotHeight: 813,
+    },
     previewLabel: 'IOT / PROTOTYPE DOCUMENTATION',
     previewBadge: 'REPORT-DERIVED VISUAL',
     note: 'Collaborative prototype documented in the supplied report. The portfolio describes the group’s implementation and reported tests without claiming sole authorship or a production-ready product.',
