@@ -12,6 +12,7 @@ import { experience, type TimelineEntry } from '@/content/experience';
 import { education } from '@/content/education';
 import { curriculum } from '@/content/curriculum';
 import { AwardsPhotoGallery, AWARDS_PHOTO_GALLERY_ENABLED } from '@/components/awards-photo-gallery';
+import { ProjectCover } from '@/components/project-cover';
 export function Reveal({ children, className = '' }: { children: React.ReactNode; className?: string }) {
   const ref = useRef<HTMLDivElement>(null);
   const visible = useInView(ref, { once: true, amount: 0.12 });
@@ -63,17 +64,17 @@ export function Gallery() {
     }}>
       <div className="gallery-stage">
         <button className="side-project previous-project" onClick={() => change(-1)} aria-label={`Previous project: ${previous.name}`} tabIndex={-1}>
-          <img src={assetPath(previous.image)} alt="" /><span>{previous.name}</span>
+          <ProjectCover cover={previous.cover} /><span>{previous.name}</span>
         </button>
         <AnimatePresence mode="wait">
           <motion.div className="project-preview" key={project.slug} initial={false} animate={{ opacity: 1, x: 0, scale: 1 }} exit={{ opacity: 0, x: reduce ? 0 : -35 }} transition={{ duration: 0.35 }} drag={reduce ? false : 'x'} dragConstraints={{ left: 0, right: 0 }} onDragEnd={(_, info) => { if (Math.abs(info.offset.x) > 55) change(info.offset.x < 0 ? 1 : -1); }}>
             <div className="browser-bar"><span><i /><i /><i /></span><span>{project.previewLabel}</span><ArrowUpRight size={11} /></div>
-            <Link href={`/projects/${project.slug}`} aria-label={`Explore ${project.name}`}><img src={assetPath(project.image)} alt={project.imageLabel} width={1440} height={900} draggable={false} /></Link>
+            <Link href={`/projects/${project.slug}`} aria-label={`Explore ${project.name}`}><ProjectCover cover={project.cover} /></Link>
             <span className="preview-badge">{project.previewBadge}</span>
           </motion.div>
         </AnimatePresence>
         <button className="side-project next-project" onClick={() => change(1)} aria-label={`Next project: ${next.name}`} tabIndex={-1}>
-          <img src={assetPath(next.image)} alt="" /><span>{next.name}</span>
+          <ProjectCover cover={next.cover} /><span>{next.name}</span>
         </button>
       </div>
       <div className="gallery-controls">

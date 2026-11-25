@@ -738,6 +738,8 @@ export const projects: Project[] = [
       screenshotWidth: 540,
       screenshotHeight: 1212,
     },
+    previewLabel: 'CAMPUSVOICE / AI CLASSIFIER',
+    previewBadge: 'FLUTTER & LOCAL AI',
     note: 'Source-verified academic project. Classification history and connection settings exist only for the current app process. The genuine Pixel 10a screenshots were extracted from the supplied updated project report and use demo identities. Screenshots containing private connection details were deliberately excluded. The private local AI environment is not presented as a commercial or publicly deployed service.',
     sources: [],
     status: 'Academic Flutter and local AI integration project',
@@ -871,6 +873,7 @@ export const projects: Project[] = [
         ],
       },
     ],
+    featured: true,
   },
   {
     slug: 'flutter-user-directory',
@@ -969,7 +972,7 @@ export const projects: Project[] = [
 ];
 
 export const featuredProjects = projects.filter(
-  (project): project is Project & { image: string; imageLabel: string; previewLabel: string; previewBadge: string } => Boolean(
-    project.featured && project.image && project.imageLabel && project.previewLabel && project.previewBadge,
+  (project): project is Project & { cover: ProjectCover; previewLabel: string; previewBadge: string } => Boolean(
+    project.featured && project.cover && project.previewLabel && project.previewBadge,
   ),
 );
