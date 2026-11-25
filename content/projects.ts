@@ -619,6 +619,118 @@ export const projects: Project[] = [
     ],
   },
   {
+    slug: 'campusvoice',
+    name: 'CampusVoice — AI-Powered Student Complaint & Comment Classifier',
+    category: 'MOBILE DEVELOPMENT / ARTIFICIAL INTELLIGENCE',
+    summary: 'Classifying campus feedback with a private, locally hosted language model.',
+    description: 'CampusVoice is an academic Flutter mobile application for submitting student complaints and comments to a locally hosted AI service. The app sends authenticated HTTPS requests through a private Tailscale connection to Open WebUI, which coordinates Llama 3.2 3B inference through Ollama. A strict Dart parser validates the returned JSON before the category, sentiment, and model-estimated confidence are shown or added to session history.',
+    stack: ['Flutter', 'Dart', 'Ollama', 'Llama 3.2 3B', 'Open WebUI', 'Docker', 'Docker Compose', 'Tailscale', 'REST API', 'JSON'],
+    features: [
+      'Student name, faculty, optional student number, and complaint or comment submission fields',
+      'Live AI classification across seven supported campus categories, with uncategorised handling for unrelated or unclear comments',
+      'Positive, negative, and neutral sentiment classification with a clearly labelled model-estimated confidence score',
+      'Validated result card plus newest-first, session-only classification history',
+      'Independent category and sentiment controls that support combined history filtering',
+      'Runtime-configured HTTPS service URL and obscured API key that are not saved to disk',
+      'Loading feedback and distinct configuration, authentication, timeout, network, server, and invalid-response errors',
+      'Strict rejection of malformed JSON, unexpected fields, unsupported values, incorrect types, and out-of-range confidence',
+    ],
+    note: 'Source-verified academic project. Classification history and connection settings exist only for the current app process. The inspected repository contains no genuine application screenshots, so this page intentionally uses the portfolio\'s text-only project treatment. The private local AI environment is not presented as a commercial or publicly deployed service.',
+    sources: [],
+    status: 'Academic Flutter and local AI integration project',
+    overviewTitle: 'Private local AI, presented through a focused mobile workflow.',
+    sections: [
+      {
+        eyebrow: 'PROBLEM STATEMENT',
+        title: 'Turn unstructured campus feedback into consistent, reviewable signals.',
+        items: [
+          'Student complaints and comments arrive as free text, making manual categorisation and sentiment review repetitive and inconsistent.',
+          'The project explores how a compact local language model can organise feedback without sending submissions to a public cloud AI provider.',
+          'Because generative output is probabilistic, the mobile client treats every response as untrusted data and validates it before presentation.',
+        ],
+      },
+      {
+        eyebrow: 'MY TECHNICAL CONTRIBUTIONS',
+        title: 'A complete Flutter-to-local-AI integration path.',
+        items: [
+          'Built the Material 3 submission, result, connection-settings, and history interfaces in Flutter and Dart.',
+          'Integrated the authenticated Open WebUI chat-completions API with a task-specific system prompt, few-shot examples, low temperature, and JSON-only response request.',
+          'Defined the classification model, exact category and sentiment allowlists, null-category handling, confidence bounds, and combined history filters.',
+          'Implemented typed failure handling and automated model, API-client, and widget tests without replacing live inference with hard-coded production behaviour.',
+        ],
+      },
+      {
+        eyebrow: 'KEY FEATURES',
+        title: 'Submission, classification, and session review in one mobile app.',
+        items: [
+          'The form requires a student name, faculty, and complaint or comment; the student number remains optional.',
+          'The result interface displays a human-readable category, one of three sentiments, and an estimated confidence percentage with an explicit accuracy disclaimer.',
+          'Successful classifications are inserted into an in-memory newest-first history that can be cleared and filtered by category, sentiment, or both.',
+          'Connection settings stay runtime-configurable and temporary, while the API key field is obscured by default.',
+        ],
+      },
+      {
+        eyebrow: 'AI CLASSIFICATION WORKFLOW',
+        title: 'From a Flutter form to a schema-validated result.',
+        items: [
+          'Flutter Mobile App -> authenticated HTTPS request -> Tailscale private network -> Open WebUI -> Ollama -> Llama 3.2 3B -> JSON response -> Flutter validation and results interface.',
+          'Flutter owns input validation, loading state, error feedback, response parsing, display, and session history. Tailscale provides private reachability between the phone and host without publishing the service openly.',
+          'Open WebUI supplies the authenticated OpenAI-compatible API layer. Ollama runs the model locally, and Llama 3.2 3B performs the requested category, sentiment, and confidence estimation.',
+          'Only a response matching the exact three-field schema is accepted; invalid model output becomes a visible error instead of a successful classification.',
+        ],
+      },
+      {
+        eyebrow: 'DOCKER & BACKEND INFRASTRUCTURE',
+        title: 'Two persistent services on a private Docker network.',
+        items: [
+          'The inspected Docker Compose file defines separate Ollama and Open WebUI services on a shared bridge network, with Open WebUI depending on Ollama.',
+          'Named volumes preserve Ollama model data and Open WebUI application data across container restarts.',
+          'Open WebUI is bound to the host loopback interface; host-managed Tailscale access provides the private HTTPS path used by the mobile app.',
+          'This arrangement is coursework infrastructure for local inference, not a public production hosting architecture.',
+        ],
+      },
+      {
+        eyebrow: 'API INTEGRATION',
+        title: 'Authenticated requests with a strict trust boundary.',
+        items: [
+          'The client accepts only an HTTPS base URL without embedded credentials, requires a runtime API key, and sends it as a bearer token in the request header.',
+          'Faculty and comment values are encoded as JSON data in the final user message, while the system prompt instructs the model not to follow commands inside submitted text.',
+          'The request disables streaming, uses a low temperature, and asks for a JSON object containing category, sentiment, and the model\'s estimated confidence.',
+          'The parser checks the Open WebUI response envelope and rejects missing choices, missing content, malformed JSON, wrong types, unsupported values, extra fields, and confidence outside zero to 100.',
+        ],
+      },
+      {
+        eyebrow: 'TESTING & VALIDATION',
+        title: 'Local schema checks plus an opt-in live-model procedure.',
+        items: [
+          'Automated coverage exercises valid and invalid classifications, all seven category labels, null-category display, confidence bounds, exact keys, field types, and combined filtering.',
+          'Mock HTTP tests cover bearer authentication, request structure, prompt examples, parsing, authentication failure, unreachable service, timeout, malformed content, and invalid model values.',
+          'Widget tests verify form requirements, a real-shaped classification response, the result interface, history, and filters.',
+          'The latest local verification reported a clean Flutter analysis and 22 passing automated tests. Six credential-dependent live Open WebUI cases remained intentionally skipped until run against the private service.',
+        ],
+      },
+      {
+        eyebrow: 'TECHNICAL CHALLENGES',
+        title: 'Making probabilistic output safe enough for a typed interface.',
+        items: [
+          'A key prompt-design challenge was distinguishing neutral factual announcements from positive feedback while still treating factual descriptions of faults as negative.',
+          'The integration needed to preserve genuine local inference while handling model responses as potentially malformed or unsupported data.',
+          'Mobile-to-host connectivity required a private HTTPS route, runtime authentication, and useful error states without embedding infrastructure details or secrets in source code.',
+        ],
+      },
+      {
+        eyebrow: 'LEARNING OUTCOMES',
+        title: 'Prompt design works best beside deterministic validation.',
+        items: [
+          'Strengthened practical Flutter state-management, form-validation, responsive Material UI, and REST integration skills.',
+          'Learned to separate a model\'s confidence estimate from measured accuracy and to avoid presenting prompt improvements as a guarantee.',
+          'Applied defence-in-depth through constrained prompts, structured output requests, strict local schema validation, typed failures, and private networking.',
+          'Documented the boundary between source-verified application behaviour, credential-dependent live inference, and academic infrastructure that is not publicly deployed.',
+        ],
+      },
+    ],
+  },
+  {
     slug: 'flutter-user-directory',
     name: 'Flutter User Directory Application',
     category: 'MOBILE DEVELOPMENT / API INTEGRATION',

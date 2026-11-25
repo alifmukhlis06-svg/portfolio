@@ -14,6 +14,7 @@ const routes = [
   'projects/smart-bathtub-safety-monitoring',
   'projects/web-application-penetration-testing',
   'projects/dvwa-vulnerability-assessment',
+  'projects/campusvoice',
   'projects/flutter-user-directory',
   'projects/coffee-shop-website',
   'projects/online-library-system',
