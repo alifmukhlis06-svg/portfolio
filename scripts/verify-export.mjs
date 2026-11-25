@@ -16,8 +16,6 @@ const routes = [
   'projects/dvwa-vulnerability-assessment',
   'projects/campusvoice',
   'projects/flutter-user-directory',
-  'projects/coffee-shop-website',
-  'projects/online-library-system',
   'beyond-code',
 ];
 for (const route of routes) await stat(resolve(root, route, 'index.html'));

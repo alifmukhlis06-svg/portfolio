@@ -27,7 +27,6 @@ export const skills: SkillGroup[] = [
       { label: 'InternPilih', href: '/projects/internpilih' },
       { label: 'GetInTheCar', href: '/projects/getinthecar' },
       { label: 'Zakat calculator', href: '/projects/zakat' },
-      { label: 'Coffee Shop Website', href: '/projects/coffee-shop-website' },
     ],
   },
   {
@@ -43,7 +42,6 @@ export const skills: SkillGroup[] = [
     ],
     evidence: [
       { label: 'InternPilih backend', href: '/projects/internpilih' },
-      { label: 'Online Library System', href: '/projects/online-library-system' },
     ],
   },
   {

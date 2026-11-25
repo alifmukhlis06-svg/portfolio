@@ -856,30 +856,6 @@ export const projects: Project[] = [
       },
     ],
   },
-  {
-    slug: 'coffee-shop-website',
-    name: 'Coffee Shop Website',
-    category: 'WEB DEVELOPMENT',
-    summary: 'A PHP-connected website for browsing a café’s core information.',
-    description: 'A coffee shop website with a menu, store locator, and contact form, connected using PHP.',
-    stack: ['PHP'],
-    features: ['Menu browsing', 'Store locator', 'Contact form'],
-    note: 'Project details are based on the latest résumé. No public repository, live deployment, or verified screenshot was supplied.',
-    sources: [],
-    overviewTitle: 'A focused informational website.',
-  },
-  {
-    slug: 'online-library-system',
-    name: 'Online Library System',
-    category: 'DATABASE APPLICATION',
-    summary: 'A database-backed library interface built with desktop development tools.',
-    description: 'A library system combining Microsoft Access and MySQL databases with an interface developed in Visual Studio.',
-    stack: ['Microsoft Access', 'MySQL', 'Visual Studio'],
-    features: ['Database application structure', 'Visual Studio interface', 'Microsoft Access and MySQL data technologies'],
-    note: 'Project details are based on the latest résumé. No public repository, live deployment, or verified screenshot was supplied.',
-    sources: [],
-    overviewTitle: 'A database and interface project.',
-  },
 ];
 
 export const featuredProjects = projects.filter(
