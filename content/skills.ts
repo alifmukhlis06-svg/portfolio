@@ -59,6 +59,7 @@ export const skills: SkillGroup[] = [
       { name: 'Wi-Fi 6 planning' },
       { name: 'Cisco Packet Tracer', kind: 'Network simulation, topology design, and network configuration', icon: '/icons/cisco.svg' },
       { name: 'Hardware troubleshooting' },
+      { name: 'ICT Asset Management', kind: 'Workplace experience' },
     ],
     evidence: [
       { label: 'GITC Enterprise Network Design', href: '/projects/gitc-enterprise-network-design' },
