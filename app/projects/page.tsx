@@ -42,6 +42,7 @@ export default function Projects() {
                 <div>
                   <span className="eyebrow">{project.category}</span>
                   <h2>{project.name}</h2>
+                  {project.timeline && <p className="project-timeline">{project.timeline}</p>}
                   <p>{project.summary}</p>
                   <div className="tags">{project.stack.map(item => <span key={item}>{item}</span>)}</div>
                 </div>

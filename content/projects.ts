@@ -32,6 +32,7 @@ export type Project = {
   category: string;
   summary: string;
   description: string;
+  timeline?: string;
   stack: string[];
   features: string[];
   website?: string;
@@ -54,15 +55,16 @@ export type Project = {
   sections?: ProjectSection[];
 };
 
-export const projects: Project[] = [
+const projectCatalog: Project[] = [
   {
     slug: 'internpilih',
     name: 'InternPilih',
     category: 'FEATURED / WEB APPLICATION',
     summary: 'Connecting students to their next chapter.',
-    description: 'An internship management portal bringing student, employer, and coordinator workflows into one place. The public source includes application, offer, document, reporting, and placement-verification endpoints.',
+    description: 'A role-based internship management portal supporting student, employer, and coordinator workflows, including applications, offers, document access, and placement management. Deployed on Vercel with Supabase/PostgreSQL.',
+    timeline: 'Ongoing',
     stack: ['PHP', 'JavaScript', 'PostgreSQL', 'Supabase', 'Vercel'],
-    features: ['Student, employer, and coordinator roles', 'Internship application and offer workflows', 'Document and placement-verification endpoints', 'Coordinator reporting interfaces'],
+    features: ['Student, employer, and coordinator roles', 'Internship application, offer, document-access, and placement workflows', 'Signed document downloads', 'Email and Telegram notifications', 'Staging and production integration troubleshooting'],
     website: 'https://internpilih.vercel.app/',
     github: 'https://github.com/alifmukhlis06-svg/InternPilih',
     image: '/projects/internpilih.webp',
@@ -238,7 +240,6 @@ export const projects: Project[] = [
         ],
       },
     ],
-    featured: true,
   },
   {
     slug: 'zakat',
@@ -266,14 +267,14 @@ export const projects: Project[] = [
     previewBadge: 'GENUINE EMULATOR CAPTURE',
     note: 'Genuine emulator capture built from the public repository at commit 146f7f1. The repository applies thresholds of 85g / 200g and a 2.5% calculation. This portfolio describes its implementation and does not provide religious or financial guidance.',
     sources: [{ label: 'Calculation implementation', url: 'https://github.com/alifmukhlis06-svg/zakat/blob/master/app/src/main/java/com/example/goldzakatcalculator/MainActivity.kt' }, { label: 'Android dependencies', url: 'https://github.com/alifmukhlis06-svg/zakat/blob/master/gradle/libs.versions.toml' }],
-    featured: true,
   },
   {
     slug: 'gitc-enterprise-network-design',
-    name: 'GITC Enterprise Network Design',
+    name: 'GITC — Enterprise Network Architecture & Design',
     category: 'NETWORKING & INFRASTRUCTURE',
     summary: 'A proposed resilient network for GITC Inc.’s new Kangar Jaya Driver Centre.',
-    description: 'A collaborative proposal for GITC Inc., an e-hailing company expanding operations to Kangar Jaya, Perlis. The design documents a scalable branch network rather than a deployed production environment.',
+    description: 'A collaborative three-tier enterprise network proposal for an e-hailing operations centre, covering nine VLANs, segmentation, redundancy, and security controls. The work documents a proposed architecture rather than a deployed production environment.',
+    timeline: 'Completed August 2026',
     stack: ['Cisco Catalyst', 'Fortinet FortiGate', 'SD-WAN', 'IPsec VPN', 'Wi-Fi 6', 'VLANs & ACLs'],
     features: [
       'Three-tier Core, Distribution, and Access architecture with redundant links and devices',
@@ -288,7 +289,7 @@ export const projects: Project[] = [
     cover: {
       theme: 'indigo',
       frame: 'diagram',
-      title: 'GITC Enterprise Network Design',
+      title: 'GITC Enterprise Network Architecture & Design',
       subtitle: 'Networking & Infrastructure',
       tagline: 'A resilient network proposal for a new driver centre.',
       screenshot: '/projects/gitc/logical-network-diagram.jpeg',
@@ -389,7 +390,8 @@ export const projects: Project[] = [
     name: 'Smart Bathtub Safety & Monitoring System',
     category: 'IOT & EMBEDDED SYSTEMS',
     summary: 'Sensor-based water monitoring, automated control, and cloud-connected visibility.',
-    description: 'A collaborative ESP32-based prototype that monitors bathtub water level and temperature, controls water flow through a relay and pump, displays readings locally, and synchronizes system data with Firebase Firestore for dashboard monitoring.',
+    description: 'A collaborative working ESP32 prototype integrating ultrasonic and temperature sensors, relay-controlled water flow, an LCD, and safety alerts. Firebase-based sensor readings and a web dashboard support monitoring and prototype testing.',
+    timeline: 'Ongoing',
     stack: ['ESP32', 'Arduino IDE', 'Firebase Firestore', 'Ultrasonic Sensor', 'Temperature Sensor', 'Wi-Fi'],
     features: [
       'Ultrasonic water-level sensing and temperature monitoring',
@@ -515,7 +517,6 @@ export const projects: Project[] = [
     note: 'Collaborative assessment performed against a localhost application in an authorized learning environment. It is not presented as a professional client engagement or testing of a public system.',
     sources: [],
     status: 'Authorized local assessment',
-    featured: true,
     overviewTitle: 'A structured web security assessment.',
     galleryTitle: 'Evidence from the assessment.',
     galleryIntro: 'Original OWASP ZAP screenshots extracted from the supplied project report. URLs shown are localhost test routes.',
@@ -600,7 +601,7 @@ export const projects: Project[] = [
     name: 'DVWA Vulnerability Assessment',
     category: 'CYBERSECURITY / WEB APPLICATION SECURITY',
     summary: 'Controlled local testing of command injection and SQL injection in DVWA.',
-    description: 'An individual technical project examining command injection and SQL injection in Damn Vulnerable Web Application (DVWA). I configured the deliberately vulnerable application in a local virtualized Kali Linux environment, performed controlled demonstrations at DVWA\'s Low security level, documented the observed behavior, and evaluated defensive controls. This was a learning exercise against a purpose-built local target—not a professional penetration test or production security audit.',
+    description: 'An individual project in a virtualized local Linux security lab, demonstrating command injection and SQL injection in the intentionally vulnerable DVWA application. The work documents security implications and recommends input allowlisting, parameterized queries, and least privilege.',
     stack: ['Kali Linux', 'DVWA', 'Apache', 'PHP', 'MySQL / MariaDB', 'Virtualization'],
     features: [
       'Local DVWA environment configured with Apache, PHP, and MySQL/MariaDB',
@@ -623,9 +624,12 @@ export const projects: Project[] = [
       screenshotWidth: 590,
       screenshotHeight: 315,
     },
+    previewLabel: 'DVWA / CONTROLLED SECURITY LAB',
+    previewBadge: 'VULNERABILITY ASSESSMENT',
     note: 'Individual project performed against DVWA in a controlled local virtualized environment. The report documents successful demonstrations at the Low security level. It does not establish a professional client engagement, production-system testing, discovery of unknown vulnerabilities, or implemented remediation. The academic report itself is not published.',
     sources: [],
     status: 'Individual controlled lab project',
+    featured: true,
     overviewTitle: 'Learning secure input handling through a purpose-built vulnerable application.',
     galleryTitle: 'Evidence from the controlled DVWA lab.',
     galleryIntro: 'Original screenshots extracted from the supplied report. Login fields were excluded, and the SQL payload and sample output are blurred for safer public presentation.',
@@ -715,7 +719,8 @@ export const projects: Project[] = [
     name: 'CampusVoice — AI-Powered Student Complaint & Comment Classifier',
     category: 'MOBILE DEVELOPMENT / ARTIFICIAL INTELLIGENCE',
     summary: 'Classifying campus feedback with a private, locally hosted language model.',
-    description: 'CampusVoice is an academic Flutter mobile application for submitting student complaints and comments to a locally hosted AI service. The app sends authenticated HTTPS requests through a private Tailscale connection to Open WebUI, which coordinates Llama 3.2 3B inference through Ollama. A strict Dart parser validates the returned JSON before the category, sentiment, and model-estimated confidence are shown or added to session history.',
+    description: 'A Flutter client integrating a self-hosted Llama 3.2 3B model through REST APIs to classify student feedback by category and sentiment. Containerized AI services run with Docker Compose and use private HTTPS access through Tailscale; structured JSON validation and client error handling protect the mobile workflow.',
+    timeline: 'November 2026 – Present',
     stack: ['Flutter', 'Dart', 'Ollama', 'Llama 3.2 3B', 'Open WebUI', 'Docker', 'Docker Compose', 'Tailscale', 'REST API', 'JSON'],
     features: [
       'Student name, faculty, optional student number, and complaint or comment submission fields',
@@ -745,6 +750,7 @@ export const projects: Project[] = [
     note: 'Source-verified academic project. Classification history and connection settings exist only for the current app process. The genuine Pixel 10a screenshots were extracted from the supplied updated project report and use demo identities. Screenshots containing private connection details were deliberately excluded. The private local AI environment is not presented as a commercial or publicly deployed service.',
     sources: [],
     status: 'Academic Flutter and local AI integration project',
+    featured: true,
     overviewTitle: 'Private local AI, presented through a focused mobile workflow.',
     galleryTitle: 'Classification outcomes and session review.',
     galleryIntro: 'Genuine Pixel 10a screenshots from the supplied updated CampusVoice report. Private connection details and credentials are not shown.',
@@ -875,7 +881,6 @@ export const projects: Project[] = [
         ],
       },
     ],
-    featured: true,
   },
   {
     slug: 'flutter-user-directory',
@@ -972,6 +977,20 @@ export const projects: Project[] = [
     ],
   },
 ];
+
+const projectPriority = [
+  'gitc-enterprise-network-design',
+  'internpilih',
+  'campusvoice',
+  'smart-bathtub-safety-monitoring',
+  'dvwa-vulnerability-assessment',
+];
+
+export const projects = [...projectCatalog].sort((a, b) => {
+  const aRank = projectPriority.indexOf(a.slug);
+  const bRank = projectPriority.indexOf(b.slug);
+  return (aRank < 0 ? projectPriority.length : aRank) - (bRank < 0 ? projectPriority.length : bRank);
+});
 
 export const featuredProjects = projects.filter(
   (project): project is Project & { cover: ProjectCover; previewLabel: string; previewBadge: string } => Boolean(

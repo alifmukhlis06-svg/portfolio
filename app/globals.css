@@ -142,6 +142,8 @@
   .footer{flex-wrap:wrap}
 }
 .about-facts>div:last-child{grid-column:1/-1}
+.availability-note{margin-top:20px;padding:13px 15px;border-left:2px solid var(--text);background:var(--surface);color:var(--text)!important;font-size:15px!important;line-height:1.55!important}
+.project-timeline{margin:10px 0 4px;color:var(--text);font-size:14px;letter-spacing:.025em}
 @media(max-width:600px){
   .skills-section{grid-template-columns:1fr}
   .about-facts{grid-template-columns:1fr}

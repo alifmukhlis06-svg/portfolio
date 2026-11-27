@@ -80,6 +80,12 @@ export default async function Detail({ params }: { params: Promise<{ slug: strin
           <p className="source-note">{project.note}</p>
         </div>
         <aside>
+          {project.timeline && (
+            <div className="project-facts">
+              <span className="eyebrow">TIMELINE</span>
+              <p>{project.timeline}</p>
+            </div>
+          )}
           {project.status && (
             <div className="project-facts">
               <span className="eyebrow">STATUS</span>
