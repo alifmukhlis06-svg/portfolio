@@ -14,6 +14,7 @@ export const skills: SkillGroup[] = [
     items: [
       { name: 'Vercel', kind: 'Deployment platform', icon: '/icons/vercel.svg' },
       { name: 'Supabase', kind: 'Backend platform', icon: '/icons/supabase.svg' },
+      { name: 'Supabase Storage', kind: 'Object storage' },
       { name: 'Docker' }, { name: 'Docker Compose' }, { name: 'Containerization' },
       { name: 'Git', kind: 'Version control', icon: '/icons/git.svg' },
       { name: 'GitHub', kind: 'Repository hosting', icon: '/icons/github.svg' }, { name: 'Tailscale' },
@@ -40,8 +41,10 @@ export const skills: SkillGroup[] = [
     number: '03', title: 'Networking & Security', icon: 'network',
     description: 'Enterprise network design, routing and switching foundations, and authorized web security testing.',
     items: [
-      { name: 'TCP/IP' }, { name: 'VLANs' }, { name: 'ACLs' }, { name: 'Routing & switching', kind: 'Fundamentals' },
+      { name: 'TCP/IP' }, { name: 'DNS' }, { name: 'DHCP' }, { name: 'VLANs' }, { name: 'ACLs' },
+      { name: 'Routing & switching', kind: 'Fundamentals' },
       { name: 'VPN & firewall design' },
+      { name: 'RJ45 crimping' }, { name: 'Cable testing' }, { name: 'Tailscale' },
       { name: 'Cisco Packet Tracer', kind: 'Network simulation', icon: '/icons/cisco.svg' },
       { name: 'OWASP ZAP', kind: 'Security testing' }, { name: 'DVWA', kind: 'Controlled lab' },
     ],
@@ -68,7 +71,9 @@ export const skills: SkillGroup[] = [
     number: '05', title: 'Systems & Virtualization', icon: 'cpu',
     description: 'Operating-system, local server, and virtualization experience from IT support and controlled lab work.',
     items: [
-      { name: 'Windows' }, { name: 'Linux', kind: 'Basics' }, { name: 'Kali Linux' },
+      { name: 'Windows 10/11', kind: 'Installation & recovery' }, { name: 'Active Directory', kind: 'Support' },
+      { name: 'Hardware troubleshooting' }, { name: 'Printer support' }, { name: 'Backup & recovery' },
+      { name: 'Preventive maintenance' }, { name: 'Linux', kind: 'Fundamentals' }, { name: 'Kali Linux' },
       { name: 'VMware', kind: 'Familiarity', icon: '/icons/vmware.svg' }, { name: 'Apache' },
     ],
     evidence: [
@@ -81,7 +86,7 @@ export const skills: SkillGroup[] = [
     description: 'Local language-model infrastructure and sensor-based embedded prototyping.',
     items: [
       { name: 'Ollama' }, { name: 'Open WebUI' }, { name: 'Llama 3.2' },
-      { name: 'ESP32' }, { name: 'Arduino IDE', kind: 'Embedded development' },
+      { name: 'ESP32' }, { name: 'Arduino IDE', kind: 'Embedded development' }, { name: 'Sensor integration' },
     ],
     evidence: [
       { label: 'CampusVoice local AI', href: '/projects/campusvoice' },

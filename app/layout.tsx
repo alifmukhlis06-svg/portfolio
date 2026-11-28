@@ -3,7 +3,7 @@ import { SiteShell } from '@/components/site-shell';
 import './globals.css';
 export const metadata: Metadata = {
   title: { default: 'Alif Mukhlis — Netcentric Computing Student', template: '%s — Alif Mukhlis' },
-  description: 'Alif Mukhlis, Netcentric Computing student at UiTM Perlis. Explore projects in web development, networking, IoT, cybersecurity, Android, and databases.',
+  description: 'Alif Mukhlis is a final-year Netcentric Computing student and JPA Scholar pursuing Cloud Engineering and IT Infrastructure opportunities.',
   robots: { index: true, follow: true },
 };
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

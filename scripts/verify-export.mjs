@@ -23,14 +23,19 @@ await stat(resolve(root, '.nojekyll'));
 const home = await readFile(resolve(root, 'index.html'), 'utf8');
 assert.ok(home.includes('hero-title'), 'Export must contain the portfolio, not the README');
 assert.ok(!home.includes('Jekyll SEO tag'), 'Jekyll output is not the application');
-const resumeFilename = 'Alif_Mukhlis_Master_Resume.pdf';
-const resumeDownloadName = 'Alif_Mukhlis_Master_Resume.pdf';
-const resumeSource = await readFile(resolve('public', 'documents', resumeFilename));
-const resumeExport = await readFile(resolve(root, 'documents', resumeFilename));
-assert.ok(resumeSource.equals(resumeExport), 'Exported Master Résumé must match the source PDF exactly');
-const resumeHref = `${basePath}/documents/${resumeFilename}`;
-assert.ok(home.split(resumeHref).length >= 3, 'Home page must link to the Master Résumé for viewing and downloading');
-assert.ok(home.includes(`download="${resumeDownloadName}"`), 'Home page must provide the professional résumé download filename');
+const resumes = [
+  { filename: 'Alif_Mukhlis_General_Application_Resume.pdf', label: 'General Application', primary: true },
+  { filename: 'Alif_Mukhlis_Master_Resume.pdf', label: 'Master', primary: false },
+];
+for (const resume of resumes) {
+  const source = await readFile(resolve('public', 'documents', resume.filename));
+  const exported = await readFile(resolve(root, 'documents', resume.filename));
+  assert.ok(source.equals(exported), `Exported ${resume.label} Résumé must match the source PDF exactly`);
+  const href = `${basePath}/documents/${resume.filename}`;
+  assert.ok(home.split(href).length >= 3, `Home page must link to the ${resume.label} Résumé in the hero and contact sections`);
+  assert.ok(home.includes(`download="${resume.filename}"`), `Home page must provide the ${resume.label} Résumé download filename`);
+}
+assert.ok(home.indexOf(resumes[0].filename) < home.indexOf(resumes[1].filename), 'General Application Résumé must be presented before the Master Résumé');
 
 let references = 0;
 async function walk(directory) {
